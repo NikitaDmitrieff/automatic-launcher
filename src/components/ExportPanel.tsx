@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   type ExportData,
   exportToMarkdown,
@@ -20,11 +20,24 @@ function ExportPanel({ data, planId }: ExportPanelProps) {
   const [markdownCopyState, setMarkdownCopyState] = useState<CopyState>('idle');
   const [linkCopyState, setLinkCopyState] = useState<CopyState>('idle');
 
+  useEffect(() => {
+    if (markdownCopyState === 'copied') {
+      const timer = setTimeout(() => setMarkdownCopyState('idle'), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [markdownCopyState]);
+
+  useEffect(() => {
+    if (linkCopyState === 'copied') {
+      const timer = setTimeout(() => setLinkCopyState('idle'), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [linkCopyState]);
+
   const handleCopyMarkdown = useCallback(async () => {
     const md = exportToMarkdown(data);
     await copyToClipboard(md);
     setMarkdownCopyState('copied');
-    setTimeout(() => setMarkdownCopyState('idle'), 2000);
   }, [data]);
 
   const handleDownloadMarkdown = useCallback(() => {
@@ -45,7 +58,6 @@ function ExportPanel({ data, planId }: ExportPanelProps) {
       : window.location.href;
     await copyToClipboard(shareUrl);
     setLinkCopyState('copied');
-    setTimeout(() => setLinkCopyState('idle'), 2000);
   }, [planId]);
 
   const btnClass =
