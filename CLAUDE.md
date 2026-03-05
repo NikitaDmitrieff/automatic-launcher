@@ -16,6 +16,13 @@ Lean launch copilot for solo indie hackers. Generates actionable launch plans wi
 - `src/types/` — TypeScript type definitions
 - `__tests__/` — Test files
 
+## Product Direction
+- **Positioning**: No-bullshit premium founder OS for indie hackers
+- **UX**: Lean, elegant, minimalist, fast — default flow is dead simple, advanced options collapsible
+- **Output quality**: Proactive, high-signal, genuinely useful — concrete steps, templates, real links. Never fluffy generic checklists.
+- **Copy tone**: Direct, confident, zero filler. Speak like a founder who ships, not a marketing page.
+- **No Aceternity MCP** — keep UI dependencies minimal
+
 ## Key Design Decisions
 - Hybrid recommendation engine: rules-based channel matching + AI-generated personalized advice
 - Inputs: project name, short description, repo URL, demo URL (required); advanced fields collapsible
