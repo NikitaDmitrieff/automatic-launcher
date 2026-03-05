@@ -1,41 +1,44 @@
 import { describe, it, expect } from 'vitest';
-import { getRecommendations, ProjectInput } from '../src/lib/engine';
+import { generateRecommendations } from '../src/lib/engine';
+import type { ProjectInput } from '../src/types/project';
 
 const baseInput: ProjectInput = {
-  name: 'TestApp',
+  projectName: 'TestApp',
   description: 'A test application',
   repoUrl: 'https://github.com/test/app',
   demoUrl: 'https://testapp.com',
 };
 
-describe('getRecommendations', () => {
+describe('generateRecommendations', () => {
   it('returns results', () => {
-    const results = getRecommendations(baseInput);
-    expect(results.length).toBeGreaterThan(0);
+    const results = generateRecommendations(baseInput);
+    expect(results.channels.length).toBeGreaterThan(0);
   });
 
   it('boosts score for matching category', () => {
-    const withCategory = getRecommendations({ ...baseInput, category: 'saas' });
-    const withoutCategory = getRecommendations(baseInput);
+    const withCategory = generateRecommendations({ ...baseInput, category: 'devtool' });
+    const withoutCategory = generateRecommendations(baseInput);
 
-    const saasChannel = withCategory.find(r => r.channel.categories.includes('saas'));
-    const sameChannelNoCategory = withoutCategory.find(r => r.channel.name === saasChannel!.channel.name);
+    // Developer-oriented channels should get a bonus when category is 'devtool'
+    const devChannelName = 'Hacker News (Show HN)';
+    const devChannelWithCategory = withCategory.channels.find(r => r.channel.name === devChannelName);
+    const devChannelWithoutCategory = withoutCategory.channels.find(r => r.channel.name === devChannelName);
 
-    expect(saasChannel!.score).toBeGreaterThan(sameChannelNoCategory!.score);
+    expect(devChannelWithCategory!.relevanceScore).toBeGreaterThan(devChannelWithoutCategory!.relevanceScore);
   });
 
-  it('returns results sorted by score descending', () => {
-    const results = getRecommendations({ ...baseInput, category: 'devtool' });
-    for (let i = 1; i < results.length; i++) {
-      expect(results[i - 1].score).toBeGreaterThanOrEqual(results[i].score);
+  it('returns results sorted by relevanceScore descending', () => {
+    const results = generateRecommendations({ ...baseInput, category: 'devtool' });
+    for (let i = 1; i < results.channels.length; i++) {
+      expect(results.channels[i - 1].relevanceScore).toBeGreaterThanOrEqual(results.channels[i].relevanceScore);
     }
   });
 
   it('all scores are between 0 and 100', () => {
-    const results = getRecommendations({ ...baseInput, category: 'saas', budget: 'free' });
-    results.forEach(r => {
-      expect(r.score).toBeGreaterThanOrEqual(0);
-      expect(r.score).toBeLessThanOrEqual(100);
+    const results = generateRecommendations({ ...baseInput, category: 'saas', budget: 'zero' });
+    results.channels.forEach(r => {
+      expect(r.relevanceScore).toBeGreaterThanOrEqual(0);
+      expect(r.relevanceScore).toBeLessThanOrEqual(100);
     });
   });
 });
