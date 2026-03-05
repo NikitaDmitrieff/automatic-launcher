@@ -1,10 +1,10 @@
 export interface ProjectInput {
-  projectName: string;
+  name: string;
   description: string;
-  repoUrl?: string;
-  demoUrl?: string;
-  category: 'saas' | 'devtool' | 'mobile-app' | 'marketplace' | 'content' | 'other';
-  budget: 'zero' | 'low' | 'medium';
-  timeline: 'rush' | 'standard' | 'relaxed';
-  targetAudience: 'developers' | 'designers' | 'marketers' | 'general' | 'founders';
+  repoUrl: string;
+  demoUrl: string;
+  targetAudience?: string;
+  category?: 'saas' | 'devtool' | 'mobile' | 'marketplace' | 'content' | 'other';
+  budget?: 'free' | 'low' | 'medium';
+  timeline?: '24h' | '1week' | '2weeks';
 }
