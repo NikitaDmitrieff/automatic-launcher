@@ -5,9 +5,10 @@ import type { ProjectInput } from '@/types/project';
 
 interface ProjectFormProps {
   onSubmit: (data: ProjectInput) => void;
+  isSubmitting?: boolean;
 }
 
-export default function ProjectForm({ onSubmit }: ProjectFormProps) {
+export default function ProjectForm({ onSubmit, isSubmitting = false }: ProjectFormProps) {
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof ProjectInput, string>>>({});
 
@@ -43,7 +44,7 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (validate()) {
+    if (!isSubmitting && validate()) {
       onSubmit(formData);
     }
   }
@@ -74,6 +75,7 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
               className={inputClass}
               value={formData.projectName}
               onChange={(e) => updateField('projectName', e.target.value)}
+              disabled={isSubmitting}
             />
             {errors.projectName && <p className="mt-1 text-sm text-red-400">{errors.projectName}</p>}
           </div>
@@ -90,6 +92,7 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
               className={inputClass + ' resize-none'}
               value={formData.description}
               onChange={(e) => updateField('description', e.target.value)}
+              disabled={isSubmitting}
             />
             {errors.description && (
               <p className="mt-1 text-sm text-red-400">{errors.description}</p>
@@ -108,6 +111,7 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
               className={inputClass}
               value={formData.repoUrl}
               onChange={(e) => updateField('repoUrl', e.target.value)}
+              disabled={isSubmitting}
             />
             {errors.repoUrl && <p className="mt-1 text-sm text-red-400">{errors.repoUrl}</p>}
           </div>
@@ -124,6 +128,7 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
               className={inputClass}
               value={formData.demoUrl}
               onChange={(e) => updateField('demoUrl', e.target.value)}
+              disabled={isSubmitting}
             />
             {errors.demoUrl && <p className="mt-1 text-sm text-red-400">{errors.demoUrl}</p>}
           </div>
@@ -135,6 +140,7 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
             type="button"
             onClick={() => setShowAdvanced((v) => !v)}
             className="flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors duration-200"
+            disabled={isSubmitting}
           >
             <svg
               className={`h-4 w-4 transition-transform duration-200 ${showAdvanced ? 'rotate-90' : ''}`}
@@ -165,6 +171,7 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
                       (e.target.value || undefined) as ProjectInput['targetAudience'],
                     )
                   }
+                  disabled={isSubmitting}
                 >
                   <option value="">Select target audience</option>
                   <option value="developers">Developers</option>
@@ -190,6 +197,7 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
                       (e.target.value || undefined) as ProjectInput['category'],
                     )
                   }
+                  disabled={isSubmitting}
                 >
                   <option value="">Select a category</option>
                   <option value="saas">SaaS</option>
@@ -216,6 +224,7 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
                       (e.target.value || undefined) as ProjectInput['budget'],
                     )
                   }
+                  disabled={isSubmitting}
                 >
                   <option value="">Select budget</option>
                   <option value="zero">Free ($0)</option>
@@ -239,6 +248,7 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
                       (e.target.value || undefined) as ProjectInput['timeline'],
                     )
                   }
+                  disabled={isSubmitting}
                 >
                   <option value="">Select timeline</option>
                   <option value="rush">Rush (24 hours)</option>
@@ -253,9 +263,13 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
         {/* Submit */}
         <button
           type="submit"
-          className="mt-8 w-full rounded-lg bg-white/90 px-6 py-3 text-sm font-semibold text-gray-900 transition-all duration-200 hover:bg-white hover:shadow-lg hover:shadow-white/20 active:scale-[0.98]"
+          disabled={isSubmitting}
+          className="mt-8 w-full rounded-lg bg-white/90 px-6 py-3 text-sm font-semibold text-gray-900 transition-all duration-200 hover:bg-white hover:shadow-lg hover:shadow-white/20 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:active:scale-100 flex items-center justify-center gap-2"
         >
-          Generate Launch Plan
+          {isSubmitting && (
+            <span className="h-4 w-4 rounded-full border-2 border-gray-900/30 border-t-gray-900 animate-spin" />
+          )}
+          {isSubmitting ? 'Generating...' : 'Generate Launch Plan'}
         </button>
       </div>
     </form>
