@@ -13,9 +13,10 @@ type CopyState = 'idle' | 'copied';
 
 interface ExportPanelProps {
   data: ExportData;
+  planId?: string;
 }
 
-function ExportPanel({ data }: ExportPanelProps) {
+function ExportPanel({ data, planId }: ExportPanelProps) {
   const [markdownCopyState, setMarkdownCopyState] = useState<CopyState>('idle');
   const [linkCopyState, setLinkCopyState] = useState<CopyState>('idle');
 
@@ -39,11 +40,13 @@ function ExportPanel({ data }: ExportPanelProps) {
   }, [data]);
 
   const handleCopyLink = useCallback(async () => {
-    // Placeholder: copy current URL for now; will be replaced with share URL
-    await copyToClipboard(window.location.href);
+    const shareUrl = planId
+      ? `${window.location.origin}/results?id=${planId}`
+      : window.location.href;
+    await copyToClipboard(shareUrl);
     setLinkCopyState('copied');
     setTimeout(() => setLinkCopyState('idle'), 2000);
-  }, []);
+  }, [planId]);
 
   return (
     <div
