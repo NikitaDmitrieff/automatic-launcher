@@ -391,6 +391,32 @@ function generateTimeline(input: ProjectInput, topChannels: ChannelRecommendatio
   return timeline;
 }
 
+function deriveChannelType(channel: Channel): OutreachTemplate['channelType'] {
+  const name = channel.name.toLowerCase();
+  if (name.includes('reddit')) return 'reddit';
+  if (name.includes('hacker news') || name.includes('show hn')) return 'hackernews';
+  if (name.includes('product hunt')) return 'producthunt';
+  if (name.includes('twitter') || name.includes('x')) return 'twitter';
+  if (name.includes('linkedin')) return 'linkedin';
+  if (name.includes('dev.to')) return 'devto';
+  if (name.includes('indie hacker')) return 'indiehackers';
+  if (channel.type === 'email') return 'email';
+  return 'community';
+}
+
+function deriveChannelId(channel: Channel): string {
+  return channel.name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+const CHARACTER_LIMITS: Partial<Record<OutreachTemplate['channelType'], number>> = {
+  twitter: 280,
+  reddit: 40000,
+  hackernews: 10000,
+};
+
 function generateOutreachTemplates(
   topChannels: ChannelRecommendation[],
   input: ProjectInput,
@@ -399,12 +425,17 @@ function generateOutreachTemplates(
 
   for (const rec of topChannels.slice(0, 5)) {
     const channel = rec.channel;
+    const channelType = deriveChannelType(channel);
+    const id = deriveChannelId(channel);
+    const characterLimit = CHARACTER_LIMITS[channelType];
     let template: OutreachTemplate;
 
     switch (channel.type) {
       case 'community':
         template = {
+          id,
           channelName: channel.name,
+          channelType,
           subject: `I built ${input.projectName} — ${input.description}`,
           body: `Hey everyone! I've been working on ${input.projectName} and wanted to share it with this community.\n\n**What it does:** ${input.description}\n\n${input.demoUrl ? `**Try it out:** ${input.demoUrl}\n\n` : ''}${input.repoUrl ? `**Source code:** ${input.repoUrl}\n\n` : ''}I'd love to hear your thoughts and feedback. What would make this more useful for you?`,
           tips: [
@@ -412,11 +443,14 @@ function generateOutreachTemplates(
             'Ask a specific question to encourage discussion',
             'Respond to every comment, even critical ones',
           ],
+          characterLimit,
         };
         break;
       case 'news':
         template = {
+          id,
           channelName: channel.name,
+          channelType,
           subject: `Show HN: ${input.projectName} – ${input.description}`,
           body: `${input.description}\n\n${input.demoUrl ? `Demo: ${input.demoUrl}\n` : ''}${input.repoUrl ? `Repo: ${input.repoUrl}\n` : ''}\nI built this because [explain the problem you experienced]. The key technical decisions were [briefly explain architecture]. Happy to answer any questions about the implementation.`,
           tips: [
@@ -425,11 +459,14 @@ function generateOutreachTemplates(
             'Write a substantive first comment with technical details',
             'Never ask for upvotes',
           ],
+          characterLimit,
         };
         break;
       case 'social':
         template = {
+          id,
           channelName: channel.name,
+          channelType,
           body: `I just launched ${input.projectName}!\n\n${input.description}\n\n${input.demoUrl ? `Check it out: ${input.demoUrl}\n\n` : ''}Here's what I learned building it:\n1. [Key insight]\n2. [Key insight]\n3. [Key insight]\n\nWould love your feedback!`,
           tips: [
             'Use a thread format for more detail',
@@ -437,22 +474,28 @@ function generateOutreachTemplates(
             'Tag relevant people who might find it useful',
             'Post during peak hours for your audience timezone',
           ],
+          characterLimit,
         };
         break;
       case 'directory':
         template = {
+          id,
           channelName: channel.name,
+          channelType,
           body: `${input.projectName}: ${input.description}`,
           tips: [
             'Use a clear, benefit-driven tagline',
             'Upload high-quality screenshots and logo',
             'Fill out all optional fields for better visibility',
           ],
+          characterLimit,
         };
         break;
       case 'email':
         template = {
+          id,
           channelName: channel.name,
+          channelType,
           subject: `${input.projectName} — ${input.description}`,
           body: `Hi,\n\nI recently launched ${input.projectName}, which ${input.description.toLowerCase()}.\n\n${input.demoUrl ? `You can check it out here: ${input.demoUrl}\n\n` : ''}I think your readers would find this interesting because [explain why it is relevant to their audience].\n\nWould you consider featuring it in an upcoming issue?\n\nThanks!`,
           tips: [
@@ -461,6 +504,7 @@ function generateOutreachTemplates(
             'Include a clear call-to-action',
             'Follow up once after 3-5 days if no response',
           ],
+          characterLimit,
         };
         break;
     }
