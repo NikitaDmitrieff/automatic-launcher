@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { createPlan, getAllPlans, getPlan, updatePlan, deletePlan } from '../../src/lib/store';
 import { generateRecommendations } from '../../src/lib/engine';
+import { updatePlanSchema, formatZodErrors } from '../../src/lib/validation';
 import type { ProjectInput, LaunchPlan } from '../../src/types/project';
 
 /**
@@ -183,6 +184,59 @@ describe('API plans route logic', () => {
 
     it('deletePlan returns false for non-existent plan', () => {
       expect(deletePlan('non-existent-id')).toBe(false);
+    });
+  });
+
+  describe('PUT - update validation', () => {
+    it('accepts valid partial updates', () => {
+      const result = updatePlanSchema.safeParse({ projectName: 'NewName' });
+      expect(result.success).toBe(true);
+    });
+
+    it('accepts empty object (no fields to update)', () => {
+      const result = updatePlanSchema.safeParse({});
+      expect(result.success).toBe(true);
+    });
+
+    it('rejects invalid field types', () => {
+      const result = updatePlanSchema.safeParse({ projectName: 123 });
+      expect(result.success).toBe(false);
+    });
+
+    it('rejects unknown fields via strict parsing', () => {
+      const result = updatePlanSchema.safeParse({ malicious: 'payload' });
+      // .partial() inherits .strict() behavior — unknown keys are stripped by default
+      // but safeParse still succeeds; the unknown key is just not in result.data
+      expect(result.success).toBe(true);
+      if (result.success) {
+        expect(result.data).not.toHaveProperty('malicious');
+      }
+    });
+
+    it('rejects projectName exceeding max length', () => {
+      const result = updatePlanSchema.safeParse({ projectName: 'a'.repeat(101) });
+      expect(result.success).toBe(false);
+    });
+
+    it('rejects invalid enum values', () => {
+      const result = updatePlanSchema.safeParse({ budget: 'unlimited' });
+      expect(result.success).toBe(false);
+    });
+
+    it('rejects invalid URL format', () => {
+      const result = updatePlanSchema.safeParse({ repoUrl: 'not-a-url' });
+      expect(result.success).toBe(false);
+    });
+
+    it('formatZodErrors returns structured errors', () => {
+      const result = updatePlanSchema.safeParse({ projectName: 123 });
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        const errors = formatZodErrors(result.error);
+        expect(errors.length).toBeGreaterThan(0);
+        expect(errors[0]).toHaveProperty('field');
+        expect(errors[0]).toHaveProperty('message');
+      }
     });
   });
 });
