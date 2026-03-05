@@ -133,6 +133,22 @@ describe('createPlanSchema', () => {
       });
       expect(result.success).toBe(true);
     });
+
+    it('rejects http:// repoUrl (requires https://)', () => {
+      const result = createPlanSchema.safeParse({
+        ...validInput,
+        repoUrl: 'http://github.com/user/repo',
+      });
+      expect(result.success).toBe(false);
+    });
+
+    it('rejects http:// demoUrl (requires https://)', () => {
+      const result = createPlanSchema.safeParse({
+        ...validInput,
+        demoUrl: 'http://example.com',
+      });
+      expect(result.success).toBe(false);
+    });
   });
 
   describe('enum validation', () => {
