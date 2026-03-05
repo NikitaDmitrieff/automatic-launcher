@@ -1,7 +1,7 @@
 'use client';
 
+import React, { useState } from 'react';
 import { ChannelRecommendation } from '@/types/recommendation';
-import { useState } from 'react';
 
 const typeColors: Record<string, string> = {
   social: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
@@ -23,7 +23,7 @@ const costColors: Record<string, string> = {
   medium: 'bg-orange-500/20 text-orange-300',
 };
 
-export default function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation }) {
+function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation }) {
   const { channel, relevanceScore, reason, actionItems } = recommendation;
   const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({});
 
@@ -135,3 +135,5 @@ export default function ChannelCard({ recommendation }: { recommendation: Channe
     </div>
   );
 }
+
+export default React.memo(ChannelCard);

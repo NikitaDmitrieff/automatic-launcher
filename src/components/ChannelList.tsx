@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { ChannelRecommendation } from '@/types/recommendation';
 import ChannelCard from './ChannelCard';
 
@@ -21,6 +21,14 @@ const tabs: { value: ChannelType; label: string }[] = [
 export default function ChannelList({ recommendations }: { recommendations: ChannelRecommendation[] }) {
   const [activeType, setActiveType] = useState<ChannelType>('all');
   const [sortBy, setSortBy] = useState<SortOption>('relevance');
+
+  const handleTypeChange = useCallback((type: ChannelType) => {
+    setActiveType(type);
+  }, []);
+
+  const handleSortChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortBy(e.target.value as SortOption);
+  }, []);
 
   const filtered = useMemo(() => {
     let result = recommendations;
@@ -48,7 +56,7 @@ export default function ChannelList({ recommendations }: { recommendations: Chan
           {tabs.map((tab) => (
             <button
               key={tab.value}
-              onClick={() => setActiveType(tab.value)}
+              onClick={() => handleTypeChange(tab.value)}
               className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
                 activeType === tab.value
                   ? 'bg-white/15 text-white shadow-sm'
@@ -65,7 +73,7 @@ export default function ChannelList({ recommendations }: { recommendations: Chan
           <span className="text-sm text-white/40">Sort by</span>
           <select
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as SortOption)}
+            onChange={handleSortChange}
             className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/70 backdrop-blur-md outline-none transition-colors focus:border-white/20"
           >
             <option value="relevance">Relevance</option>
