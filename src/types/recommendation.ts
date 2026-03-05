@@ -14,3 +14,23 @@ export interface ChannelRecommendation {
   reason: string;
   actionItems: string[];
 }
+
+export interface LaunchPlan {
+  projectName: string;
+  channels: ChannelRecommendation[];
+  timeline: TimelineItem[];
+  outreachTemplates: OutreachTemplate[];
+}
+
+export interface TimelineItem {
+  day: number;
+  title: string;
+  tasks: string[];
+}
+
+export interface OutreachTemplate {
+  channelName: string;
+  subject?: string;
+  body: string;
+  tips: string[];
+}
