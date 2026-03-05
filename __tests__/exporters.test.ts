@@ -1,11 +1,17 @@
 import { describe, it, expect } from 'vitest';
-import { exportToMarkdown, exportToJSON } from '../src/lib/exporters';
+import { exportToMarkdown, exportToJSON, ExportData } from '../src/lib/exporters';
 
-const sampleData = {
+const sampleData: ExportData = {
   projectName: 'MyApp',
   channels: [
-    { name: 'Reddit', url: 'https://reddit.com/r/test' },
-    { name: 'Hacker News', url: 'https://news.ycombinator.com' },
+    { name: 'Reddit', url: 'https://reddit.com/r/test', reason: 'Great community', actionItems: ['Post intro'] },
+    { name: 'Hacker News', url: 'https://news.ycombinator.com', reason: 'Tech audience', actionItems: ['Submit Show HN'] },
+  ],
+  timeline: [
+    { day: 1, title: 'Prep', tasks: ['Write copy'] },
+  ],
+  templates: [
+    { channelName: 'Reddit', body: 'Check out MyApp' },
   ],
 };
 
