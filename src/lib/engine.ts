@@ -10,9 +10,19 @@ import { CHANNELS } from './channels';
 
 /**
  * Score a channel based on how well it matches the project input.
- * Returns a value between 0 and 100.
+ *
+ * Starts from a base score of 50 and applies bonuses/penalties for:
+ * - **Category match** — e.g. `devtool` projects score higher on Hacker News
+ * - **Audience match** — e.g. `founders` audience boosts Indie Hackers
+ * - **Budget match** — free channels score higher when budget is `zero`
+ * - **Timeline match** — low-effort channels score higher on `rush` timelines
+ * - **URL bonuses** — +5 for repo URL on dev channels, +5 for demo URL on product channels
+ *
+ * @param channel - The channel to score
+ * @param input - The project input containing user-provided details
+ * @returns A relevance score between 0 and 100
  */
-function scoreChannel(channel: Channel, input: ProjectInput): number {
+export function scoreChannel(channel: Channel, input: ProjectInput): number {
   let score = 50; // base score
 
   // Category matching
@@ -518,6 +528,13 @@ function generateOutreachTemplates(
 /**
  * Generate a complete launch plan with channel recommendations,
  * timeline, and outreach templates based on project input.
+ *
+ * Scores all channels via {@link scoreChannel}, ranks them by relevance,
+ * and selects the top 10. Then generates a 7-day launch timeline and
+ * outreach templates for the top 5 channels.
+ *
+ * @param input - The project input containing name, description, URLs, and optional filters
+ * @returns A complete {@link LaunchPlan} with ranked channels, timeline, and outreach templates
  */
 export function generateRecommendations(input: ProjectInput): LaunchPlan {
   // Score and rank all channels
