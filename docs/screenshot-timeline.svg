@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 550" width="1440" height="550">
+  <rect width="1440" height="550" fill="#000000"/>
+  <!-- Section title -->
+  <text x="100" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700" fill="#ffffff" letter-spacing="-0.5">24-Hour Launch Timeline</text>
+  <text x="100" y="90" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="#71717a">Step-by-step plan to maximize your launch day impact.</text>
+
+  <!-- Timeline line -->
+  <line x1="180" y1="130" x2="180" y2="510" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+
+  <!-- Phase 1 -->
+  <circle cx="180" cy="155" r="8" fill="#22c55e" opacity="0.8"/>
+  <text x="210" y="148" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#22c55e" letter-spacing="1">8:00 AM - PRE-LAUNCH</text>
+  <rect x="210" y="160" width="1100" height="70" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="240" y="185" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#d4d4d8">Final checks and preparation</text>
+  <text x="240" y="210" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#71717a">Verify all links work  |  Prepare social media assets  |  Draft all posts  |  Set up analytics tracking</text>
+
+  <!-- Phase 2 -->
+  <circle cx="180" cy="270" r="8" fill="#3b82f6" opacity="0.8"/>
+  <text x="210" y="263" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#3b82f6" letter-spacing="1">10:00 AM - LAUNCH</text>
+  <rect x="210" y="275" width="1100" height="70" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="240" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#d4d4d8">Go live on primary channels</text>
+  <text x="240" y="325" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#71717a">Post to r/SideProject  |  Submit Show HN  |  Tweet launch thread  |  Notify your network</text>
+
+  <!-- Phase 3 -->
+  <circle cx="180" cy="385" r="8" fill="#eab308" opacity="0.8"/>
+  <text x="210" y="378" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#eab308" letter-spacing="1">2:00 PM - ENGAGE</text>
+  <rect x="210" y="390" width="1100" height="70" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="240" y="415" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#d4d4d8">Monitor and respond to feedback</text>
+  <text x="240" y="440" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#71717a">Reply to every comment  |  Post to secondary channels  |  Share early traction updates  |  Fix any reported bugs</text>
+
+  <!-- Phase 4 -->
+  <circle cx="180" cy="500" r="8" fill="#a855f7" opacity="0.8"/>
+  <text x="210" y="493" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#a855f7" letter-spacing="1">8:00 PM - FOLLOW UP</text>
+  <rect x="210" y="505" width="1100" height="35" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="240" y="528" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#d4d4d8">Review metrics, plan tomorrow's follow-up posts, thank supporters</text>
+</svg>

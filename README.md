@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/hero-dark.png" alt="Automatic Launcher" width="720" />
+  <img src="docs/hero-dark.svg" alt="Automatic Launcher" width="720" />
 </p>
 
 <h1 align="center">Automatic Launcher</h1>
@@ -50,15 +50,15 @@ Open [http://localhost:3000](http://localhost:3000) and paste your project detai
 
 **Channel Recommendations** -- Get matched with the best launch channels for your project type. Reddit communities, Product Hunt, Hacker News, niche forums -- with direct links.
 
-<!-- ![Channel Recommendations](docs/screenshot-channels.png) -->
+![Channel Recommendations](docs/screenshot-channels.svg)
 
 **Outreach Playbooks** -- Ready-to-use post templates for each channel. Know exactly what to write, what tone to use, and how to frame your project.
 
-<!-- ![Outreach Playbooks](docs/screenshot-outreach.png) -->
+![Outreach Playbooks](docs/screenshot-outreach.svg)
 
 **24-Hour Launch Timeline** -- A structured plan broken into clear steps. Know exactly what to do and when, so you spend time launching instead of planning.
 
-<!-- ![Launch Timeline](docs/screenshot-timeline.png) -->
+![Launch Timeline](docs/screenshot-timeline.svg)
 
 ## How It Works
 
