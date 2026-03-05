@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import type { OutreachTemplate } from '../types/outreach';
 
 const channelIcons: Record<OutreachTemplate['channelType'], string> = {
@@ -36,6 +36,13 @@ export default function OutreachEditor({
     template.characterLimit !== undefined &&
     characterCount > template.characterLimit;
 
+  useEffect(() => {
+    if (copied) {
+      const timer = setTimeout(() => setCopied(false), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [copied]);
+
   const resetToTemplate = useCallback(() => {
     setSubject(template.subject ?? '');
     setBody(template.body);
@@ -47,7 +54,6 @@ export default function OutreachEditor({
       await navigator.clipboard.writeText(fullText);
       setCopied(true);
       onMarkDone(template.id);
-      setTimeout(() => setCopied(false), 2000);
     } catch {
       const textarea = document.createElement('textarea');
       textarea.value = fullText;
@@ -57,7 +63,6 @@ export default function OutreachEditor({
       document.body.removeChild(textarea);
       setCopied(true);
       onMarkDone(template.id);
-      setTimeout(() => setCopied(false), 2000);
     }
   }, [subject, body, template.id, onMarkDone]);
 
