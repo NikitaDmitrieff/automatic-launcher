@@ -33,9 +33,21 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
     const next: Partial<Record<keyof ProjectInput, string>> = {};
 
     if (!formData.projectName.trim()) next.projectName = 'Project name is required';
-    if (!formData.description.trim()) next.description = 'Description is required';
-    if (!formData.repoUrl.trim()) next.repoUrl = 'Repository URL is required';
-    if (!formData.demoUrl.trim()) next.demoUrl = 'Demo URL is required';
+    if (!formData.description.trim()) {
+      next.description = 'Description is required';
+    } else if (formData.description.length > 200) {
+      next.description = 'Description must be 200 characters or less';
+    }
+    if (!formData.repoUrl.trim()) {
+      next.repoUrl = 'Repository URL is required';
+    } else if (!formData.repoUrl.startsWith('https://')) {
+      next.repoUrl = 'URL must start with https://';
+    }
+    if (!formData.demoUrl.trim()) {
+      next.demoUrl = 'Demo URL is required';
+    } else if (!formData.demoUrl.startsWith('https://')) {
+      next.demoUrl = 'URL must start with https://';
+    }
 
     setErrors(next);
     return Object.keys(next).length === 0;
@@ -86,11 +98,15 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
             <textarea
               id="description"
               rows={3}
+              maxLength={200}
               placeholder="Describe what your project does in 1-2 sentences"
               className={inputClass + ' resize-none'}
               value={formData.description}
               onChange={(e) => updateField('description', e.target.value)}
             />
+            <p className="mt-1 text-xs text-white/40">
+              {formData.description.length}/200
+            </p>
             {errors.description && (
               <p className="mt-1 text-sm text-red-400">{errors.description}</p>
             )}
