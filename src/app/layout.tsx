@@ -8,9 +8,24 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Automatic Launcher - Launch Your Project in 24 Hours",
+  title: {
+    default: "Automatic Launcher - Launch Your Project in 24 Hours",
+    template: "%s | Automatic Launcher",
+  },
   description:
-    "Lean launch copilot for solo indie hackers. Get actionable launch plans with personalized channel recommendations, outreach playbooks, and launch timelines.",
+    "Lean launch copilot for solo indie hackers. Get personalized channel recommendations, outreach playbooks, and a step-by-step launch timeline.",
+  openGraph: {
+    title: "Automatic Launcher - Launch Your Project in 24 Hours",
+    description:
+      "Lean launch copilot for solo indie hackers. Get personalized channel recommendations, outreach playbooks, and a step-by-step launch timeline.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Automatic Launcher - Launch Your Project in 24 Hours",
+    description:
+      "Lean launch copilot for solo indie hackers. Get personalized channel recommendations, outreach playbooks, and a step-by-step launch timeline.",
+  },
 };
 
 export default function RootLayout({
