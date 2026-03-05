@@ -48,11 +48,12 @@ function ExportPanel({ data, planId }: ExportPanelProps) {
     setTimeout(() => setLinkCopyState('idle'), 2000);
   }, [planId]);
 
+  const btnClass =
+    'inline-flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-300 transition-all hover:bg-white/[0.08] hover:border-white/[0.12] active:scale-[0.97]';
+
   return (
-    <div
-      className="relative rounded-2xl border border-white/20 bg-white/10 p-6 shadow-xl backdrop-blur-xl"
-    >
-      <h3 className="mb-4 text-lg font-semibold text-white">
+    <div className="relative rounded-xl border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-xl">
+      <h3 className="mb-4 text-sm font-bold text-zinc-100 uppercase tracking-wider">
         Export &amp; Share
       </h3>
 
@@ -61,7 +62,7 @@ function ExportPanel({ data, planId }: ExportPanelProps) {
         <button
           onClick={handleCopyMarkdown}
           aria-label="Copy launch plan as Markdown"
-          className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-white/20 active:scale-95"
+          className={btnClass}
         >
           {markdownCopyState === 'copied' ? (
             <>
@@ -79,7 +80,7 @@ function ExportPanel({ data, planId }: ExportPanelProps) {
         <button
           onClick={handleDownloadMarkdown}
           aria-label="Download launch plan as Markdown file"
-          className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-white/20 active:scale-95"
+          className={btnClass}
         >
           <DownloadIcon />
           <span>Download .md</span>
@@ -88,7 +89,7 @@ function ExportPanel({ data, planId }: ExportPanelProps) {
         <button
           onClick={handleDownloadJSON}
           aria-label="Download launch plan as JSON file"
-          className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-white/20 active:scale-95"
+          className={btnClass}
         >
           <DownloadIcon />
           <span>Download .json</span>
@@ -96,15 +97,15 @@ function ExportPanel({ data, planId }: ExportPanelProps) {
       </div>
 
       {/* Divider */}
-      <div className="my-4 border-t border-white/10" />
+      <div className="my-4 border-t border-white/[0.06]" />
 
       {/* Share section */}
       <div>
-        <p className="mb-2 text-sm text-white/60">Share your launch plan</p>
+        <p className="mb-2 text-xs text-zinc-600 uppercase tracking-wider">Share your launch plan</p>
         <button
           onClick={handleCopyLink}
           aria-label="Copy shareable link to clipboard"
-          className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-white/20 active:scale-95"
+          className={btnClass}
         >
           {linkCopyState === 'copied' ? (
             <>
@@ -178,7 +179,7 @@ function CheckIcon() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="animate-[scale-in_0.2s_ease-out] text-green-400"
+      className="text-zinc-300"
     >
       <polyline points="20 6 9 17 4 12" />
     </svg>

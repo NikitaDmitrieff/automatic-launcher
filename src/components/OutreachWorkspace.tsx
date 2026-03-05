@@ -5,27 +5,6 @@ import { outreachTemplates, fillTemplate } from '../lib/templates';
 import type { OutreachTemplate } from '../types/outreach';
 import OutreachEditor from './OutreachEditor';
 
-const channelTabColors: Record<OutreachTemplate['channelType'], string> = {
-  reddit: 'bg-orange-500/20 border-orange-500/40 text-orange-300',
-  hackernews: 'bg-amber-500/20 border-amber-500/40 text-amber-300',
-  producthunt: 'bg-red-500/20 border-red-500/40 text-red-300',
-  twitter: 'bg-sky-500/20 border-sky-500/40 text-sky-300',
-  linkedin: 'bg-blue-500/20 border-blue-500/40 text-blue-300',
-  email: 'bg-emerald-500/20 border-emerald-500/40 text-emerald-300',
-  community: 'bg-violet-500/20 border-violet-500/40 text-violet-300',
-};
-
-const channelTabInactive: Record<OutreachTemplate['channelType'], string> = {
-  reddit: 'hover:bg-orange-500/10 hover:border-orange-500/20 text-white/50',
-  hackernews: 'hover:bg-amber-500/10 hover:border-amber-500/20 text-white/50',
-  producthunt: 'hover:bg-red-500/10 hover:border-red-500/20 text-white/50',
-  twitter: 'hover:bg-sky-500/10 hover:border-sky-500/20 text-white/50',
-  linkedin: 'hover:bg-blue-500/10 hover:border-blue-500/20 text-white/50',
-  email: 'hover:bg-emerald-500/10 hover:border-emerald-500/20 text-white/50',
-  community:
-    'hover:bg-violet-500/10 hover:border-violet-500/20 text-white/50',
-};
-
 interface OutreachWorkspaceProps {
   projectName?: string;
   description?: string;
@@ -63,30 +42,30 @@ export default function OutreachWorkspace({
   const progressPercent = Math.round((progress / total) * 100);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white p-4 md:p-8">
+    <div className="min-h-screen bg-black text-white p-4 md:p-8">
       <div className="max-w-6xl mx-auto space-y-6">
         {/* Header */}
         <div className="space-y-2">
-          <h2 className="text-2xl font-semibold text-white/90">
+          <h2 className="text-2xl font-bold tracking-tight text-white">
             Outreach Workspace
           </h2>
-          <p className="text-sm text-white/40">
+          <p className="text-sm text-zinc-600">
             Customize and copy launch templates for each channel. Edit the
             placeholders, then copy when ready.
           </p>
         </div>
 
         {/* Progress Bar */}
-        <div className="bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-md">
+        <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-white/60">Launch progress</span>
-            <span className="text-sm font-mono text-white/40">
+            <span className="text-sm text-zinc-500">Launch progress</span>
+            <span className="text-sm font-[family-name:var(--font-code)] text-zinc-600">
               {progress}/{total} channels ready
             </span>
           </div>
-          <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+          <div className="h-1.5 bg-white/[0.04] rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full transition-all duration-500 ease-out"
+              className="h-full bg-white/30 rounded-full transition-all duration-500 ease-out"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
@@ -94,7 +73,7 @@ export default function OutreachWorkspace({
 
         {/* Channel Tabs */}
         <div className="flex flex-wrap gap-2">
-          {outreachTemplates.map((template) => {
+          {outreachTemplates.map((template: OutreachTemplate) => {
             const isActive = template.id === activeTemplateId;
             const isDone = doneIds.has(template.id);
 
@@ -102,16 +81,16 @@ export default function OutreachWorkspace({
               <button
                 key={template.id}
                 onClick={() => setActiveTemplateId(template.id)}
-                className={`px-3 py-2 text-sm rounded-lg border transition-all backdrop-blur-sm ${
+                className={`px-3 py-2 text-sm rounded-lg border transition-all ${
                   isActive
-                    ? channelTabColors[template.channelType]
-                    : `border-white/5 ${channelTabInactive[template.channelType]}`
+                    ? 'bg-white/[0.08] border-white/[0.12] text-white'
+                    : 'border-white/[0.04] text-zinc-600 hover:text-zinc-400 hover:border-white/[0.08]'
                 }`}
               >
                 <span className="flex items-center gap-1.5">
                   {template.channelName}
                   {isDone && (
-                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-zinc-400" />
                   )}
                 </span>
               </button>
@@ -120,7 +99,7 @@ export default function OutreachWorkspace({
         </div>
 
         {/* Editor */}
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-5 md:p-6 backdrop-blur-md">
+        <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5 md:p-6">
           <OutreachEditor
             key={activeTemplate.id}
             template={activeTemplate}
