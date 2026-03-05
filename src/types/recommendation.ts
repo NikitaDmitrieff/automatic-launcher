@@ -1,3 +1,5 @@
+export type { OutreachTemplate } from './outreach';
+
 export interface Channel {
   name: string;
   type: 'social' | 'community' | 'news' | 'directory' | 'email';
@@ -26,11 +28,4 @@ export interface TimelineItem {
   day: number;
   title: string;
   tasks: string[];
-}
-
-export interface OutreachTemplate {
-  channelName: string;
-  subject?: string;
-  body: string;
-  tips: string[];
 }
