@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { channels } from '../src/lib/channels';
+import { CHANNELS as channels } from '../src/lib/channels';
 
 describe('channels', () => {
   it('array is not empty', () => {
