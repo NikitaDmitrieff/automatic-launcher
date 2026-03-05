@@ -1,3 +1,5 @@
+import type { LaunchPlan as RecommendationPlan } from './recommendation';
+
 export interface ProjectInput {
   projectName: string;
   description: string;
@@ -9,10 +11,13 @@ export interface ProjectInput {
   timeline?: 'rush' | 'standard' | 'relaxed';
 }
 
+export type { RecommendationPlan };
+
 export interface LaunchPlan {
   id: string;
   input: ProjectInput;
   channels: string[];
+  recommendations?: RecommendationPlan;
   createdAt: string;
   updatedAt: string;
 }
