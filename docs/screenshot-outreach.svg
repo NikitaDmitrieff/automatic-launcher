@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 600" width="1440" height="600">
+  <rect width="1440" height="600" fill="#000000"/>
+  <!-- Section title -->
+  <text x="100" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700" fill="#ffffff" letter-spacing="-0.5">Outreach Playbook</text>
+  <text x="100" y="90" font-family="system-ui, -apple-system, sans-serif" font-size="15" fill="#71717a">Ready-to-use templates tailored for each channel. Edit and customize before posting.</text>
+
+  <!-- Tab bar -->
+  <rect x="80" y="115" width="1280" height="44" rx="8" fill="rgba(255,255,255,0.02)"/>
+  <rect x="84" y="119" width="140" height="36" rx="6" fill="rgba(255,255,255,0.08)"/>
+  <text x="154" y="142" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#ffffff">r/SideProject</text>
+  <text x="310" y="142" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#52525b">Hacker News</text>
+  <text x="460" y="142" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#52525b">Product Hunt</text>
+  <text x="600" y="142" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#52525b">Twitter/X</text>
+  <text x="730" y="142" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#52525b">Dev.to</text>
+
+  <!-- Editor area -->
+  <rect x="80" y="175" width="840" height="380" rx="12" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <!-- Title field -->
+  <text x="120" y="215" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#52525b" letter-spacing="1">POST TITLE</text>
+  <rect x="120" y="228" width="760" height="40" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="140" y="254" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#d4d4d8">I built MyApp - a tool that helps indie hackers launch faster</text>
+  <!-- Body field -->
+  <text x="120" y="300" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#52525b" letter-spacing="1">POST BODY</text>
+  <rect x="120" y="313" width="760" height="220" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="140" y="343" font-family="monospace" font-size="13" fill="#a1a1aa">Hey everyone! I've been working on MyApp for the past</text>
+  <text x="140" y="367" font-family="monospace" font-size="13" fill="#a1a1aa">few months and just shipped v1.</text>
+  <text x="140" y="401" font-family="monospace" font-size="13" fill="#a1a1aa">**What it does:** Generates personalized launch plans</text>
+  <text x="140" y="425" font-family="monospace" font-size="13" fill="#a1a1aa">for indie hackers with channel recommendations and</text>
+  <text x="140" y="449" font-family="monospace" font-size="13" fill="#a1a1aa">outreach templates.</text>
+  <text x="140" y="483" font-family="monospace" font-size="13" fill="#a1a1aa">**Tech stack:** Next.js 15, React 19, Tailwind</text>
+  <text x="140" y="507" font-family="monospace" font-size="13" fill="#a1a1aa">Would love your feedback! [link]</text>
+
+  <!-- Tips sidebar -->
+  <rect x="960" y="175" width="400" height="380" rx="12" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="1000" y="215" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#ffffff">Tips for r/SideProject</text>
+  <circle cx="1008" cy="250" r="3" fill="#22c55e"/>
+  <text x="1020" y="255" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#a1a1aa">Be authentic, share your journey</text>
+  <circle cx="1008" cy="278" r="3" fill="#22c55e"/>
+  <text x="1020" y="283" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#a1a1aa">Include a demo GIF or screenshot</text>
+  <circle cx="1008" cy="306" r="3" fill="#22c55e"/>
+  <text x="1020" y="311" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#a1a1aa">Mention what problem you solved</text>
+  <circle cx="1008" cy="334" r="3" fill="#eab308"/>
+  <text x="1020" y="339" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#a1a1aa">Avoid overly promotional language</text>
+  <circle cx="1008" cy="362" r="3" fill="#eab308"/>
+  <text x="1020" y="367" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="#a1a1aa">Engage with every comment</text>
+  <text x="1000" y="415" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#52525b" letter-spacing="1">BEST TIME TO POST</text>
+  <text x="1000" y="440" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#d4d4d8">Tuesday-Thursday, 9-11am EST</text>
+  <text x="1000" y="475" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#52525b" letter-spacing="1">EXPECTED ENGAGEMENT</text>
+  <text x="1000" y="500" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#d4d4d8">50-200 upvotes, 10-30 comments</text>
+</svg>
