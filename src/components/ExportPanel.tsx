@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   type ExportData,
   exportToMarkdown,
@@ -15,7 +15,7 @@ interface ExportPanelProps {
   data: ExportData;
 }
 
-export default function ExportPanel({ data }: ExportPanelProps) {
+function ExportPanel({ data }: ExportPanelProps) {
   const [markdownCopyState, setMarkdownCopyState] = useState<CopyState>('idle');
   const [linkCopyState, setLinkCopyState] = useState<CopyState>('idle');
 
@@ -115,6 +115,8 @@ export default function ExportPanel({ data }: ExportPanelProps) {
     </div>
   );
 }
+
+export default React.memo(ExportPanel);
 
 /* ---------- Inline SVG icons ---------- */
 
