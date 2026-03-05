@@ -41,6 +41,7 @@ function scoreChannel(channel: Channel, input: ProjectInput): number {
 }
 
 function getCategoryBonus(channel: Channel, category: ProjectInput['category']): number {
+  if (!category) return 0;
   const bonusMap: Record<string, Record<string, number>> = {
     saas: {
       'Product Hunt': 15,
@@ -96,6 +97,7 @@ function getCategoryBonus(channel: Channel, category: ProjectInput['category']):
 }
 
 function getAudienceBonus(channel: Channel, audience: ProjectInput['targetAudience']): number {
+  if (!audience) return 0;
   const bonusMap: Record<string, Record<string, number>> = {
     developers: {
       'Hacker News (Show HN)': 12,
@@ -137,6 +139,7 @@ function getAudienceBonus(channel: Channel, audience: ProjectInput['targetAudien
 }
 
 function getBudgetBonus(channel: Channel, budget: ProjectInput['budget']): number {
+  if (!budget) return 0;
   if (budget === 'zero' && channel.cost === 'free') return 5;
   if (budget === 'zero' && channel.cost !== 'free') return -15;
   if (budget === 'low' && channel.cost === 'medium') return -5;
@@ -144,6 +147,7 @@ function getBudgetBonus(channel: Channel, budget: ProjectInput['budget']): numbe
 }
 
 function getTimelineBonus(channel: Channel, timeline: ProjectInput['timeline']): number {
+  if (!timeline) return 0;
   if (timeline === 'rush') {
     if (channel.effort === 'low') return 10;
     if (channel.effort === 'high') return -10;
