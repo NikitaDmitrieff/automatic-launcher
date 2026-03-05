@@ -3,26 +3,6 @@
 import React, { useState } from 'react';
 import { ChannelRecommendation } from '@/types/recommendation';
 
-const typeColors: Record<string, string> = {
-  social: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-  community: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-  news: 'bg-orange-500/20 text-orange-300 border-orange-500/30',
-  directory: 'bg-green-500/20 text-green-300 border-green-500/30',
-  email: 'bg-pink-500/20 text-pink-300 border-pink-500/30',
-};
-
-const effortColors: Record<string, string> = {
-  low: 'bg-green-500/20 text-green-300',
-  medium: 'bg-yellow-500/20 text-yellow-300',
-  high: 'bg-red-500/20 text-red-300',
-};
-
-const costColors: Record<string, string> = {
-  free: 'bg-emerald-500/20 text-emerald-300',
-  low: 'bg-yellow-500/20 text-yellow-300',
-  medium: 'bg-orange-500/20 text-orange-300',
-};
-
 function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation }) {
   const { channel, relevanceScore, reason, actionItems } = recommendation;
   const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({});
@@ -34,7 +14,7 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
   const scorePercent = Math.round(relevanceScore * 100);
 
   return (
-    <div role="article" className="group relative rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:shadow-lg hover:shadow-purple-500/5">
+    <div role="article" className="group relative rounded-xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]">
       {/* Header */}
       <div className="mb-4 flex items-start justify-between gap-3">
         <a
@@ -42,11 +22,11 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`${channel.name} (opens in new tab)`}
-          className="flex items-center gap-2 text-lg font-semibold text-white transition-colors hover:text-purple-300"
+          className="flex items-center gap-2 text-sm font-bold text-zinc-100 transition-colors hover:text-white"
         >
           {channel.name}
           <svg
-            className="h-4 w-4 shrink-0 opacity-50 transition-opacity group-hover:opacity-100"
+            className="h-3.5 w-3.5 shrink-0 text-zinc-600 transition-colors group-hover:text-zinc-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -61,9 +41,7 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
           </svg>
           <span className="sr-only">(opens in new tab)</span>
         </a>
-        <span
-          className={`shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-medium ${typeColors[channel.type]}`}
-        >
+        <span className="shrink-0 rounded-full border border-white/[0.08] bg-white/[0.04] px-2.5 py-0.5 text-[11px] font-medium text-zinc-500">
           {channel.type}
         </span>
       </div>
@@ -71,42 +49,42 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
       {/* Relevance score bar */}
       <div className="mb-4">
         <div className="mb-1 flex items-center justify-between text-xs">
-          <span className="text-white/50">Relevance</span>
-          <span className="font-medium text-white/70">{scorePercent}%</span>
+          <span className="text-zinc-600">Relevance</span>
+          <span className="font-medium font-[family-name:var(--font-code)] text-zinc-500">{scorePercent}%</span>
         </div>
-        <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+        <div className="h-1 w-full overflow-hidden rounded-full bg-white/[0.06]">
           <div
-            className="h-full rounded-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-500"
+            className="h-full rounded-full bg-white/30 transition-all duration-500"
             style={{ width: `${scorePercent}%` }}
           />
         </div>
       </div>
 
       {/* Description */}
-      <p className="mb-4 text-sm leading-relaxed text-white/60">{channel.description}</p>
+      <p className="mb-4 text-sm leading-relaxed text-zinc-500">{channel.description}</p>
 
       {/* Badges */}
       <div className="mb-4 flex flex-wrap gap-2">
-        <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-xs text-white/60">
+        <span className="rounded-full bg-white/[0.04] border border-white/[0.06] px-2.5 py-0.5 text-[11px] text-zinc-500">
           {channel.audienceSize}
         </span>
-        <span className={`rounded-full px-2.5 py-0.5 text-xs ${effortColors[channel.effort]}`}>
+        <span className="rounded-full bg-white/[0.04] border border-white/[0.06] px-2.5 py-0.5 text-[11px] text-zinc-500">
           {channel.effort} effort
         </span>
-        <span className={`rounded-full px-2.5 py-0.5 text-xs ${costColors[channel.cost]}`}>
+        <span className="rounded-full bg-white/[0.04] border border-white/[0.06] px-2.5 py-0.5 text-[11px] text-zinc-500">
           {channel.cost === 'free' ? 'Free' : `${channel.cost} cost`}
         </span>
       </div>
 
       {/* Why recommended */}
-      <div className="mb-4 rounded-xl bg-white/5 p-3">
-        <h4 className="mb-1 text-xs font-medium text-white/40">Why recommended</h4>
-        <p className="text-sm text-white/70">{reason}</p>
+      <div className="mb-4 rounded-lg bg-white/[0.03] border border-white/[0.04] p-3">
+        <h4 className="mb-1 text-[11px] font-medium text-zinc-600 uppercase tracking-wider">Why recommended</h4>
+        <p className="text-sm text-zinc-400">{reason}</p>
       </div>
 
       {/* Action items */}
       <div>
-        <h4 className="mb-2 text-xs font-medium text-white/40">Action items</h4>
+        <h4 className="mb-2 text-[11px] font-medium text-zinc-600 uppercase tracking-wider">Action items</h4>
         <ul className="space-y-1.5">
           {actionItems.map((item, index) => (
             <li key={index} className="flex items-start gap-2">
@@ -115,8 +93,8 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
                 aria-label={`Mark "${item}" as ${checkedItems[index] ? 'incomplete' : 'complete'}`}
                 className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border transition-colors ${
                   checkedItems[index]
-                    ? 'border-purple-500 bg-purple-500 text-white'
-                    : 'border-white/20 bg-transparent hover:border-white/40'
+                    ? 'border-zinc-500 bg-white text-black'
+                    : 'border-white/[0.12] bg-transparent hover:border-white/[0.25]'
                 }`}
               >
                 {checkedItems[index] && (
@@ -127,7 +105,7 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
               </button>
               <span
                 className={`text-sm transition-colors ${
-                  checkedItems[index] ? 'text-white/30 line-through' : 'text-white/60'
+                  checkedItems[index] ? 'text-zinc-700 line-through' : 'text-zinc-500'
                 }`}
               >
                 {item}

@@ -1,22 +1,37 @@
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-black">
+      {/* Nav */}
+      <nav className="px-6 py-6">
+        <div className="max-w-5xl mx-auto flex items-center justify-between">
+          <span className="text-sm font-bold tracking-widest text-white uppercase">
+            Automatic Launcher
+          </span>
+          <a
+            href="/launch"
+            className="text-sm text-zinc-500 transition-colors hover:text-zinc-300"
+          >
+            Launch
+          </a>
+        </div>
+      </nav>
+
       {/* Hero Section */}
-      <main className="flex-1 flex items-center justify-center px-4 py-16 sm:py-24">
-        <div className="glass rounded-2xl p-8 sm:p-12 max-w-2xl w-full text-center">
-          <div className="inline-block px-3 py-1 mb-6 text-xs font-medium tracking-wide uppercase rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+      <main className="flex-1 flex flex-col items-center justify-center px-4 py-24 sm:py-32">
+        <div className="max-w-2xl w-full text-center">
+          <div className="inline-block px-3 py-1 mb-8 text-xs font-medium tracking-widest uppercase rounded-full bg-white/[0.04] text-zinc-500 border border-white/[0.06]">
             Launch Copilot for Indie Hackers
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-4">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-6">
             Launch Your Project
             <br />
-            <span className="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="text-zinc-500">
               in 24 Hours
             </span>
           </h1>
 
-          <p className="text-lg text-gray-400 mb-8 max-w-lg mx-auto leading-relaxed">
+          <p className="text-lg text-zinc-500 mb-12 max-w-lg mx-auto leading-relaxed">
             Get an actionable launch plan tailored to your project. Personalized
             channel recommendations, outreach playbooks, and a step-by-step
             timeline.
@@ -24,7 +39,7 @@ export default function Home() {
 
           <a
             href="/launch"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white font-medium transition-colors duration-200"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-white text-black text-sm font-semibold transition-all duration-150 hover:bg-zinc-200 active:scale-[0.97]"
           >
             Create Your Launch Plan
             <svg
@@ -45,17 +60,17 @@ export default function Home() {
       </main>
 
       {/* Features Section */}
-      <section className="px-4 pb-16 sm:pb-24">
+      <section className="px-4 pb-24 sm:pb-32">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-semibold text-center text-white mb-12">
+          <h2 className="text-2xl font-bold tracking-tight text-center text-white mb-16">
             Everything you need to launch
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div className="glass glass-hover rounded-xl p-6">
-              <div className="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center mb-4">
+              <div className="w-10 h-10 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center mb-4">
                 <svg
-                  className="w-5 h-5 text-indigo-400"
+                  className="w-5 h-5 text-zinc-400"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -68,20 +83,20 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-medium text-white mb-2">
+              <h3 className="text-sm font-bold text-zinc-100 mb-2">
                 Channel Recommendations
               </h3>
-              <p className="text-sm text-gray-400 leading-relaxed">
+              <p className="text-sm text-zinc-600 leading-relaxed">
                 Get matched with the best launch channels for your project type
-                -- from Reddit communities to Product Hunt and niche forums.
+                &mdash; from Reddit communities to Product Hunt and niche forums.
                 Complete with direct links.
               </p>
             </div>
 
             <div className="glass glass-hover rounded-xl p-6">
-              <div className="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center mb-4">
+              <div className="w-10 h-10 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center mb-4">
                 <svg
-                  className="w-5 h-5 text-cyan-400"
+                  className="w-5 h-5 text-zinc-400"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -94,10 +109,10 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-medium text-white mb-2">
+              <h3 className="text-sm font-bold text-zinc-100 mb-2">
                 Outreach Playbooks
               </h3>
-              <p className="text-sm text-gray-400 leading-relaxed">
+              <p className="text-sm text-zinc-600 leading-relaxed">
                 Ready-to-use templates for each channel. Know exactly what to
                 post, how to frame your project, and what tone resonates with
                 each community.
@@ -105,9 +120,9 @@ export default function Home() {
             </div>
 
             <div className="glass glass-hover rounded-xl p-6">
-              <div className="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4">
+              <div className="w-10 h-10 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center mb-4">
                 <svg
-                  className="w-5 h-5 text-purple-400"
+                  className="w-5 h-5 text-zinc-400"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -120,10 +135,10 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-medium text-white mb-2">
+              <h3 className="text-sm font-bold text-zinc-100 mb-2">
                 Launch Timeline
               </h3>
-              <p className="text-sm text-gray-400 leading-relaxed">
+              <p className="text-sm text-zinc-600 leading-relaxed">
                 A structured 24-hour plan broken into clear steps. Know exactly
                 what to do and when, so you spend time launching instead of
                 planning.
@@ -134,9 +149,9 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 px-4 py-6">
+      <footer className="border-t border-white/[0.04] px-4 py-10">
         <div className="max-w-5xl mx-auto flex items-center justify-center">
-          <p className="text-sm text-gray-500">
+          <p className="text-xs text-zinc-700">
             Automatic Launcher &mdash; ship faster, launch smarter.
           </p>
         </div>

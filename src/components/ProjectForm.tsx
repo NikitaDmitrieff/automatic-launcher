@@ -62,15 +62,15 @@ export default function ProjectForm({ onSubmit, isSubmitting = false }: ProjectF
   }
 
   const inputClass =
-    'w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/40 outline-none transition-all duration-200 focus:border-white/30 focus:ring-2 focus:ring-white/20 focus:bg-white/10';
+    'w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-zinc-100 placeholder-zinc-600 outline-none transition-all duration-200 focus:border-white/[0.2] focus:ring-1 focus:ring-white/[0.1] focus:bg-white/[0.06] text-sm';
 
-  const labelClass = 'block text-sm font-medium text-white/70 mb-1.5';
+  const labelClass = 'block text-xs font-medium text-zinc-500 mb-1.5 uppercase tracking-wider';
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-xl mx-auto">
-      <div className="rounded-2xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur-xl">
-        <h2 className="text-2xl font-bold text-white mb-1">Launch your project</h2>
-        <p className="text-white/50 mb-8 text-sm">
+      <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 backdrop-blur-xl">
+        <h2 className="text-2xl font-bold text-white mb-1 tracking-tight">Launch your project</h2>
+        <p className="text-zinc-600 mb-8 text-sm">
           Fill in the details and get a personalized launch plan.
         </p>
 
@@ -89,7 +89,7 @@ export default function ProjectForm({ onSubmit, isSubmitting = false }: ProjectF
               onChange={(e) => updateField('projectName', e.target.value)}
               disabled={isSubmitting}
             />
-            {errors.projectName && <p className="mt-1 text-sm text-red-400">{errors.projectName}</p>}
+            {errors.projectName && <p className="mt-1 text-xs text-red-400">{errors.projectName}</p>}
           </div>
 
           {/* Description */}
@@ -112,7 +112,7 @@ export default function ProjectForm({ onSubmit, isSubmitting = false }: ProjectF
               {formData.description.length}/200
             </p>
             {errors.description && (
-              <p className="mt-1 text-sm text-red-400">{errors.description}</p>
+              <p className="mt-1 text-xs text-red-400">{errors.description}</p>
             )}
           </div>
 
@@ -130,7 +130,7 @@ export default function ProjectForm({ onSubmit, isSubmitting = false }: ProjectF
               onChange={(e) => updateField('repoUrl', e.target.value)}
               disabled={isSubmitting}
             />
-            {errors.repoUrl && <p className="mt-1 text-sm text-red-400">{errors.repoUrl}</p>}
+            {errors.repoUrl && <p className="mt-1 text-xs text-red-400">{errors.repoUrl}</p>}
           </div>
 
           {/* Demo URL */}
@@ -147,18 +147,18 @@ export default function ProjectForm({ onSubmit, isSubmitting = false }: ProjectF
               onChange={(e) => updateField('demoUrl', e.target.value)}
               disabled={isSubmitting}
             />
-            {errors.demoUrl && <p className="mt-1 text-sm text-red-400">{errors.demoUrl}</p>}
+            {errors.demoUrl && <p className="mt-1 text-xs text-red-400">{errors.demoUrl}</p>}
           </div>
         </div>
 
         {/* Advanced Options */}
-        <div className="mt-8 border-t border-white/10 pt-6">
+        <div className="mt-8 border-t border-white/[0.06] pt-6">
           <button
             type="button"
             onClick={() => setShowAdvanced((v) => !v)}
             aria-expanded={showAdvanced}
             aria-controls="advanced-options"
-            className="flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors duration-200"
+            className="flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-400 transition-colors duration-200"
             disabled={isSubmitting}
           >
             <svg
@@ -283,7 +283,7 @@ export default function ProjectForm({ onSubmit, isSubmitting = false }: ProjectF
         <button
           type="submit"
           disabled={isSubmitting}
-          className="mt-8 w-full rounded-lg bg-white/90 px-6 py-3 text-sm font-semibold text-gray-900 transition-all duration-200 hover:bg-white hover:shadow-lg hover:shadow-white/20 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:active:scale-100 flex items-center justify-center gap-2"
+          className="mt-8 w-full rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-black transition-all duration-150 hover:bg-zinc-200 active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:active:scale-100 flex items-center justify-center gap-2"
         >
           {isSubmitting && (
             <span className="h-4 w-4 rounded-full border-2 border-gray-900/30 border-t-gray-900 animate-spin" />

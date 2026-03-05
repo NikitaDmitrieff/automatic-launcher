@@ -3,16 +3,6 @@
 import { useState, useCallback } from 'react';
 import type { OutreachTemplate } from '../types/outreach';
 
-const channelColors: Record<OutreachTemplate['channelType'], string> = {
-  reddit: 'from-orange-500/20 to-orange-600/10 border-orange-500/30',
-  hackernews: 'from-amber-500/20 to-amber-600/10 border-amber-500/30',
-  producthunt: 'from-red-500/20 to-red-600/10 border-red-500/30',
-  twitter: 'from-sky-500/20 to-sky-600/10 border-sky-500/30',
-  linkedin: 'from-blue-500/20 to-blue-600/10 border-blue-500/30',
-  email: 'from-emerald-500/20 to-emerald-600/10 border-emerald-500/30',
-  community: 'from-violet-500/20 to-violet-600/10 border-violet-500/30',
-};
-
 const channelIcons: Record<OutreachTemplate['channelType'], string> = {
   reddit: 'R',
   hackernews: 'Y',
@@ -57,7 +47,6 @@ export default function OutreachEditor({
       onMarkDone(template.id);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Fallback for older browsers
       const textarea = document.createElement('textarea');
       textarea.value = fullText;
       document.body.appendChild(textarea);
@@ -70,8 +59,6 @@ export default function OutreachEditor({
     }
   }, [subject, body, template.id, onMarkDone]);
 
-  const colorClass = channelColors[template.channelType];
-
   return (
     <div className="flex flex-col lg:flex-row gap-4 h-full">
       {/* Editor Panel */}
@@ -79,16 +66,14 @@ export default function OutreachEditor({
         {/* Channel Badge */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span
-              className={`inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br ${colorClass} text-sm font-bold font-mono`}
-            >
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white/[0.06] border border-white/[0.08] text-sm font-bold font-[family-name:var(--font-code)] text-zinc-400">
               {channelIcons[template.channelType]}
             </span>
-            <h3 className="text-white/90 font-medium text-lg">
+            <h3 className="text-zinc-100 font-medium text-lg">
               {template.channelName}
             </h3>
             {isDone && (
-              <span className="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30">
+              <span className="text-[11px] bg-white/[0.06] text-zinc-400 px-2 py-0.5 rounded-full border border-white/[0.08]">
                 Done
               </span>
             )}
@@ -96,7 +81,7 @@ export default function OutreachEditor({
           <button
             onClick={() => setShowTips(!showTips)}
             aria-label={showTips ? 'Hide tips' : 'Show tips'}
-            className="text-sm text-white/40 hover:text-white/70 transition-colors lg:hidden"
+            className="text-sm text-zinc-600 hover:text-zinc-400 transition-colors lg:hidden"
           >
             {showTips ? 'Hide tips' : 'Show tips'}
           </button>
@@ -105,14 +90,14 @@ export default function OutreachEditor({
         {/* Subject Field */}
         {template.subject !== undefined && (
           <div>
-            <label className="block text-xs text-white/40 mb-1 uppercase tracking-wider">
+            <label className="block text-[11px] text-zinc-600 mb-1 uppercase tracking-wider">
               Subject / Title
             </label>
             <input
               type="text"
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white/90 font-mono text-sm focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/10 placeholder-white/20 backdrop-blur-sm"
+              className="w-full bg-white/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-zinc-100 font-[family-name:var(--font-code)] text-sm focus:outline-none focus:border-white/[0.2] focus:ring-1 focus:ring-white/[0.1] placeholder-zinc-700"
               placeholder="Subject line..."
             />
           </div>
@@ -120,14 +105,14 @@ export default function OutreachEditor({
 
         {/* Body Editor */}
         <div className="flex-1 flex flex-col">
-          <label className="block text-xs text-white/40 mb-1 uppercase tracking-wider">
+          <label className="block text-[11px] text-zinc-600 mb-1 uppercase tracking-wider">
             Body
           </label>
           <textarea
             value={body}
             onChange={(e) => setBody(e.target.value)}
             aria-describedby="outreach-char-count"
-            className="flex-1 min-h-[280px] w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white/90 font-mono text-sm leading-relaxed focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/10 placeholder-white/20 resize-none backdrop-blur-sm"
+            className="flex-1 min-h-[280px] w-full bg-white/[0.04] border border-white/[0.08] rounded-lg px-4 py-3 text-zinc-100 font-[family-name:var(--font-code)] text-sm leading-relaxed focus:outline-none focus:border-white/[0.2] focus:ring-1 focus:ring-white/[0.1] placeholder-zinc-700 resize-none"
             placeholder="Write your outreach message..."
           />
         </div>
@@ -135,15 +120,14 @@ export default function OutreachEditor({
         {/* Footer Controls */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* Character Counter */}
             <span
               id="outreach-char-count"
-              className={`text-xs font-mono ${
+              className={`text-xs font-[family-name:var(--font-code)] ${
                 isOverLimit
                   ? 'text-red-400'
                   : template.characterLimit
-                    ? 'text-white/40'
-                    : 'text-white/20'
+                    ? 'text-zinc-600'
+                    : 'text-zinc-700'
               }`}
             >
               {characterCount}
@@ -161,16 +145,16 @@ export default function OutreachEditor({
           <div className="flex items-center gap-2">
             <button
               onClick={resetToTemplate}
-              className="px-3 py-1.5 text-xs text-white/40 hover:text-white/70 border border-white/10 hover:border-white/20 rounded-lg transition-all backdrop-blur-sm"
+              className="px-3 py-1.5 text-xs text-zinc-600 hover:text-zinc-400 border border-white/[0.06] hover:border-white/[0.12] rounded-lg transition-all"
             >
               Reset to template
             </button>
             <button
               onClick={copyToClipboard}
-              className={`px-4 py-1.5 text-sm font-medium rounded-lg transition-all backdrop-blur-sm ${
+              className={`px-4 py-1.5 text-sm font-medium rounded-lg transition-all ${
                 copied
-                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                  : 'bg-white/10 text-white/90 hover:bg-white/20 border border-white/10 hover:border-white/20'
+                  ? 'bg-white/[0.08] text-zinc-300 border border-white/[0.12]'
+                  : 'bg-white text-black hover:bg-zinc-200 active:scale-[0.97]'
               }`}
             >
               {copied ? 'Copied!' : 'Copy to clipboard'}
@@ -182,8 +166,8 @@ export default function OutreachEditor({
       {/* Tips Sidebar */}
       {showTips && (
         <div className="lg:w-72 shrink-0">
-          <div className="bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-md">
-            <h4 className="text-sm font-medium text-white/70 mb-3 uppercase tracking-wider">
+          <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4">
+            <h4 className="text-[11px] font-medium text-zinc-500 mb-3 uppercase tracking-wider">
               Tips for {template.channelName}
             </h4>
             <ul className="space-y-2">
@@ -195,10 +179,10 @@ export default function OutreachEditor({
                     key={i}
                     className={`text-xs leading-relaxed ${
                       isDo
-                        ? 'text-emerald-400/80'
+                        ? 'text-zinc-400'
                         : isDont
-                          ? 'text-red-400/70'
-                          : 'text-white/50'
+                          ? 'text-zinc-600'
+                          : 'text-zinc-500'
                     }`}
                   >
                     {tip}
