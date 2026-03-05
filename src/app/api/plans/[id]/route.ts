@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getPlan, updatePlan, deletePlan } from '@/lib/store';
+import { updatePlanSchema, formatZodErrors } from '@/lib/validation';
 
 export async function GET(
   _request: Request,
@@ -20,8 +21,23 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const body = await request.json();
-  const updated = updatePlan(id, body);
+
+  let body: unknown;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+  }
+
+  const result = updatePlanSchema.safeParse(body);
+  if (!result.success) {
+    return NextResponse.json(
+      { error: 'Validation failed', details: formatZodErrors(result.error) },
+      { status: 400 }
+    );
+  }
+
+  const updated = updatePlan(id, result.data);
 
   if (!updated) {
     return NextResponse.json({ error: 'Plan not found' }, { status: 404 });
