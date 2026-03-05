@@ -29,9 +29,9 @@ export default function OutreachWorkspace({
     [projectName, description, demoUrl]
   );
 
-  const activeTemplate = filledTemplates.find(
-    (t) => t.id === activeTemplateId
-  )!;
+  const activeTemplate =
+    filledTemplates.find((t) => t.id === activeTemplateId) ??
+    filledTemplates[0];
 
   const handleMarkDone = useCallback((id: string) => {
     setDoneIds((prev) => new Set(prev).add(id));
