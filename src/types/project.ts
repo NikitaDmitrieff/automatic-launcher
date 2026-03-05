@@ -1,12 +1,12 @@
 export interface ProjectInput {
-  name: string;
+  projectName: string;
   description: string;
   repoUrl: string;
   demoUrl: string;
-  targetAudience?: string;
-  category?: 'saas' | 'devtool' | 'mobile' | 'marketplace' | 'content' | 'other';
-  budget?: 'free' | 'low' | 'medium';
-  timeline?: '24h' | '1week' | '2weeks';
+  targetAudience?: 'developers' | 'designers' | 'marketers' | 'founders' | 'general';
+  category?: 'saas' | 'devtool' | 'mobile-app' | 'marketplace' | 'content' | 'other';
+  budget?: 'zero' | 'low' | 'medium';
+  timeline?: 'rush' | 'standard' | 'relaxed';
 }
 
 export interface LaunchPlan {

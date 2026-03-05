@@ -9,11 +9,11 @@ export async function GET() {
 
 export async function POST(request: Request) {
   const body = await request.json();
-  const { name, description, repoUrl, demoUrl } = body as Partial<ProjectInput>;
+  const { projectName, description, repoUrl, demoUrl } = body as Partial<ProjectInput>;
 
-  if (!name || !description || !repoUrl || !demoUrl) {
+  if (!projectName || !description || !repoUrl || !demoUrl) {
     return NextResponse.json(
-      { error: 'Missing required fields: name, description, repoUrl, demoUrl' },
+      { error: 'Missing required fields: projectName, description, repoUrl, demoUrl' },
       { status: 400 }
     );
   }
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
   const plan = createPlan({
     id: crypto.randomUUID(),
     input: {
-      name,
+      projectName,
       description,
       repoUrl,
       demoUrl,
