@@ -40,7 +40,7 @@ export default function LaunchPage() {
   }
 
   return (
-    <main className="min-h-screen bg-black flex items-center justify-center px-4 py-16">
+    <main className="min-h-screen bg-[var(--bg-page)] flex items-center justify-center px-4 py-16">
       <ProjectForm onSubmit={handleSubmit} isSubmitting={isSubmitting} />
     </main>
   );

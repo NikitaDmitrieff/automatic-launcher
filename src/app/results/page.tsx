@@ -66,14 +66,14 @@ function ResultsContent() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-purple-950 flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--bg-page)] flex items-center justify-center">
         <div className="text-center">
           <div className="mb-4 text-4xl">&#x26A0;</div>
-          <h2 className="text-xl font-semibold text-white mb-2">Plan Not Found</h2>
-          <p className="text-white/50 mb-6">{error}</p>
+          <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-2">Plan Not Found</h2>
+          <p className="text-[var(--text-muted)] mb-6">{error}</p>
           <Link
             href="/launch"
-            className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-white/20"
+            className="inline-flex items-center gap-2 rounded-lg border border-[var(--border-hover)] bg-[var(--surface-8)] px-5 py-2.5 text-sm font-medium text-[var(--text-primary)] transition-all hover:bg-[var(--surface-6)]"
           >
             Create a new plan
           </Link>
@@ -84,33 +84,33 @@ function ResultsContent() {
 
   if (!channels) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-purple-950 flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--bg-page)] flex items-center justify-center">
         <div className="text-center">
-          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-white/20 border-t-white/80" />
-          <p className="mt-4 text-white/50">Generating your launch plan...</p>
+          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-[var(--border-hover)] border-t-[var(--text-primary)]" />
+          <p className="mt-4 text-[var(--text-muted)]">Generating your launch plan...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-[var(--bg-page)]">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-10">
           <Link
             href="/launch"
-            className="mb-6 inline-flex items-center gap-1.5 text-sm text-zinc-600 transition-colors hover:text-zinc-400"
+            className="mb-6 inline-flex items-center gap-1.5 text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-tertiary)]"
           >
             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
             Back to launch
           </Link>
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+          <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl">
             Launch Plan for {projectName}
           </h1>
-          <p className="mt-3 text-lg text-zinc-500">
+          <p className="mt-3 text-lg text-[var(--text-secondary)]">
             Personalized recommendations sorted by relevance to your project.
           </p>
         </div>
@@ -144,10 +144,10 @@ export default function ResultsPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-purple-950 flex items-center justify-center">
+        <div className="min-h-screen bg-[var(--bg-page)] flex items-center justify-center">
           <div className="text-center">
-            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-white/20 border-t-white/80" />
-            <p className="mt-4 text-white/50">Loading...</p>
+            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-[var(--border-hover)] border-t-[var(--text-primary)]" />
+            <p className="mt-4 text-[var(--text-muted)]">Loading...</p>
           </div>
         </div>
       }

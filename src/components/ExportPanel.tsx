@@ -49,11 +49,11 @@ function ExportPanel({ data, planId }: ExportPanelProps) {
   }, [planId]);
 
   const btnClass =
-    'inline-flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.04] px-4 py-2 text-sm font-medium text-zinc-300 transition-all hover:bg-white/[0.08] hover:border-white/[0.12] active:scale-[0.97]';
+    'inline-flex items-center gap-2 rounded-lg border border-[var(--border-medium)] bg-[var(--surface-4)] px-4 py-2 text-sm font-medium text-[var(--text-secondary)] transition-all hover:bg-[var(--surface-8)] hover:border-[var(--border-hover)] active:scale-[0.97]';
 
   return (
-    <div className="relative rounded-xl border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-xl">
-      <h3 className="mb-4 text-sm font-bold text-zinc-100 uppercase tracking-wider">
+    <div className="relative rounded-xl border border-[var(--border-medium)] bg-[var(--surface-3)] p-6 backdrop-blur-xl">
+      <h3 className="mb-4 text-sm font-bold text-[var(--text-primary)] uppercase tracking-wider">
         Export &amp; Share
       </h3>
 
@@ -97,11 +97,11 @@ function ExportPanel({ data, planId }: ExportPanelProps) {
       </div>
 
       {/* Divider */}
-      <div className="my-4 border-t border-white/[0.06]" />
+      <div className="my-4 border-t border-[var(--border)]" />
 
       {/* Share section */}
       <div>
-        <p className="mb-2 text-xs text-zinc-600 uppercase tracking-wider">Share your launch plan</p>
+        <p className="mb-2 text-xs text-[var(--text-muted)] uppercase tracking-wider">Share your launch plan</p>
         <button
           onClick={handleCopyLink}
           aria-label="Copy shareable link to clipboard"
@@ -179,7 +179,7 @@ function CheckIcon() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="text-zinc-300"
+      className="text-[var(--text-secondary)]"
     >
       <polyline points="20 6 9 17 4 12" />
     </svg>
