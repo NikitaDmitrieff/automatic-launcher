@@ -101,6 +101,111 @@ src/
 __tests__/       Test files
 ```
 
+## API Reference
+
+### `GET /api/health`
+
+Health check endpoint.
+
+**Response** `200`
+```json
+{ "status": "ok", "timestamp": "2025-01-15T12:00:00.000Z" }
+```
+
+---
+
+### `POST /api/plans`
+
+Create a new launch plan. Validates input with Zod, scores channels, and returns a full plan.
+
+**Request body**
+
+| Field            | Type     | Required | Notes |
+|------------------|----------|----------|-------|
+| `projectName`    | `string` | Yes      | 1-100 chars |
+| `description`    | `string` | Yes      | 1-200 chars |
+| `repoUrl`        | `string` | No       | Must be `https://` URL (or empty string) |
+| `demoUrl`        | `string` | No       | Must be `https://` URL (or empty string) |
+| `targetAudience` | `string` | No       | `developers` \| `designers` \| `marketers` \| `founders` \| `general` |
+| `category`       | `string` | No       | `saas` \| `devtool` \| `mobile-app` \| `marketplace` \| `content` \| `other` |
+| `budget`         | `string` | No       | `zero` \| `low` \| `medium` |
+| `timeline`       | `string` | No       | `rush` \| `standard` \| `relaxed` |
+
+**Response** `201`
+```json
+{
+  "id": "uuid",
+  "input": { "projectName": "...", "description": "...", ... },
+  "channels": ["Reddit r/SideProject", "Hacker News (Show HN)", ...],
+  "recommendations": {
+    "projectName": "...",
+    "channels": [{ "channel": { ... }, "relevanceScore": 82, "reason": "...", "actionItems": [...] }],
+    "timeline": [{ "day": 1, "title": "Preparation", "tasks": [...] }],
+    "outreachTemplates": [{ "id": "...", "channelName": "...", "body": "..." }]
+  },
+  "createdAt": "2025-01-15T12:00:00.000Z",
+  "updatedAt": "2025-01-15T12:00:00.000Z"
+}
+```
+
+**Error responses**
+
+| Status | Body | When |
+|--------|------|------|
+| `400`  | `{ "error": "Invalid JSON in request body" }` | Malformed JSON |
+| `400`  | `{ "error": "Validation failed", "details": [{ "field": "projectName", "message": "..." }] }` | Zod validation failure |
+
+---
+
+### `GET /api/plans`
+
+List all plans.
+
+**Response** `200` -- Array of plan objects (same shape as the `POST` response).
+
+---
+
+### `GET /api/plans/:id`
+
+Get a single plan by ID.
+
+**Response** `200` -- Plan object.
+
+| Status | Body | When |
+|--------|------|------|
+| `404`  | `{ "error": "Plan not found" }` | No plan with that ID |
+
+---
+
+### `PUT /api/plans/:id`
+
+Update an existing plan. Accepts a partial body (any subset of the `POST` fields).
+
+**Response** `200` -- Updated plan object.
+
+| Status | Body | When |
+|--------|------|------|
+| `400`  | `{ "error": "Invalid JSON" }` | Malformed JSON |
+| `400`  | `{ "error": "Validation failed", "details": [...] }` | Zod validation failure |
+| `404`  | `{ "error": "Plan not found" }` | No plan with that ID |
+
+---
+
+### `DELETE /api/plans/:id`
+
+Delete a plan.
+
+**Response** `200`
+```json
+{ "message": "Plan deleted" }
+```
+
+| Status | Body | When |
+|--------|------|------|
+| `404`  | `{ "error": "Plan not found" }` | No plan with that ID |
+
+---
+
 ## Roadmap
 
 - [x] Core recommendation engine with rules-based matching
