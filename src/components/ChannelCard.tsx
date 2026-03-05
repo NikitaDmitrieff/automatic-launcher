@@ -11,7 +11,7 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
     setCheckedItems((prev) => ({ ...prev, [index]: !prev[index] }));
   };
 
-  const scorePercent = Math.round(relevanceScore * 100);
+  const scorePercent = Math.round(relevanceScore);
 
   return (
     <div role="article" className="group relative rounded-xl border border-[var(--border)] bg-[var(--surface-2)] p-6 transition-all duration-300 hover:border-[var(--border-hover)] hover:bg-[var(--surface-4)]">
