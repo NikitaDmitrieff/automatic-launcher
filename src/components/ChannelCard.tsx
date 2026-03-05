@@ -34,13 +34,14 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
   const scorePercent = Math.round(relevanceScore * 100);
 
   return (
-    <div className="group relative rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:shadow-lg hover:shadow-purple-500/5">
+    <div role="article" className="group relative rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:shadow-lg hover:shadow-purple-500/5">
       {/* Header */}
       <div className="mb-4 flex items-start justify-between gap-3">
         <a
           href={channel.url}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`${channel.name} (opens in new tab)`}
           className="flex items-center gap-2 text-lg font-semibold text-white transition-colors hover:text-purple-300"
         >
           {channel.name}
@@ -49,6 +50,7 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
@@ -57,6 +59,7 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
               d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
             />
           </svg>
+          <span className="sr-only">(opens in new tab)</span>
         </a>
         <span
           className={`shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-medium ${typeColors[channel.type]}`}
@@ -109,6 +112,7 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
             <li key={index} className="flex items-start gap-2">
               <button
                 onClick={() => toggleItem(index)}
+                aria-label={`Mark "${item}" as ${checkedItems[index] ? 'incomplete' : 'complete'}`}
                 className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border transition-colors ${
                   checkedItems[index]
                     ? 'border-purple-500 bg-purple-500 text-white'

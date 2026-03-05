@@ -102,12 +102,13 @@ export default function ProjectForm({ onSubmit, isSubmitting = false }: ProjectF
               rows={3}
               maxLength={200}
               placeholder="Describe what your project does in 1-2 sentences"
+              aria-describedby="description-count"
               className={inputClass + ' resize-none'}
               value={formData.description}
               onChange={(e) => updateField('description', e.target.value)}
               disabled={isSubmitting}
             />
-            <p className="mt-1 text-xs text-white/40">
+            <p id="description-count" className="mt-1 text-xs text-white/40">
               {formData.description.length}/200
             </p>
             {errors.description && (
@@ -155,6 +156,8 @@ export default function ProjectForm({ onSubmit, isSubmitting = false }: ProjectF
           <button
             type="button"
             onClick={() => setShowAdvanced((v) => !v)}
+            aria-expanded={showAdvanced}
+            aria-controls="advanced-options"
             className="flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors duration-200"
             disabled={isSubmitting}
           >
@@ -171,7 +174,7 @@ export default function ProjectForm({ onSubmit, isSubmitting = false }: ProjectF
           </button>
 
           {showAdvanced && (
-            <div className="mt-4 space-y-5 animate-in fade-in slide-in-from-top-2 duration-200">
+            <div id="advanced-options" className="mt-4 space-y-5 animate-in fade-in slide-in-from-top-2 duration-200">
               {/* Target Audience */}
               <div>
                 <label htmlFor="targetAudience" className={labelClass}>

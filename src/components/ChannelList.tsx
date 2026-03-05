@@ -52,10 +52,13 @@ export default function ChannelList({ recommendations }: { recommendations: Chan
       {/* Controls */}
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         {/* Filter tabs */}
-        <div className="flex flex-wrap gap-1.5 rounded-xl border border-white/10 bg-white/5 p-1.5 backdrop-blur-md">
+        <div role="tablist" aria-label="Filter channels by type" className="flex flex-wrap gap-1.5 rounded-xl border border-white/10 bg-white/5 p-1.5 backdrop-blur-md">
           {tabs.map((tab) => (
             <button
               key={tab.value}
+              role="tab"
+              aria-selected={activeType === tab.value}
+              aria-label={`Filter by ${tab.label}`}
               onClick={() => handleTypeChange(tab.value)}
               className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
                 activeType === tab.value
@@ -70,10 +73,12 @@ export default function ChannelList({ recommendations }: { recommendations: Chan
 
         {/* Sort select */}
         <div className="flex items-center gap-2">
-          <span className="text-sm text-white/40">Sort by</span>
+          <label htmlFor="channel-sort" className="text-sm text-white/40">Sort by</label>
           <select
+            id="channel-sort"
             value={sortBy}
             onChange={handleSortChange}
+            aria-label="Sort channels"
             className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/70 backdrop-blur-md outline-none transition-colors focus:border-white/20"
           >
             <option value="relevance">Relevance</option>
@@ -88,9 +93,11 @@ export default function ChannelList({ recommendations }: { recommendations: Chan
       </p>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div role="list" className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {filtered.map((rec) => (
-          <ChannelCard key={rec.channel.name} recommendation={rec} />
+          <div role="listitem" key={rec.channel.name}>
+            <ChannelCard recommendation={rec} />
+          </div>
         ))}
       </div>
 

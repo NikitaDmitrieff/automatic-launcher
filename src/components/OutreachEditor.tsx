@@ -95,6 +95,7 @@ export default function OutreachEditor({
           </div>
           <button
             onClick={() => setShowTips(!showTips)}
+            aria-label={showTips ? 'Hide tips' : 'Show tips'}
             className="text-sm text-white/40 hover:text-white/70 transition-colors lg:hidden"
           >
             {showTips ? 'Hide tips' : 'Show tips'}
@@ -125,6 +126,7 @@ export default function OutreachEditor({
           <textarea
             value={body}
             onChange={(e) => setBody(e.target.value)}
+            aria-describedby="outreach-char-count"
             className="flex-1 min-h-[280px] w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white/90 font-mono text-sm leading-relaxed focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/10 placeholder-white/20 resize-none backdrop-blur-sm"
             placeholder="Write your outreach message..."
           />
@@ -135,6 +137,7 @@ export default function OutreachEditor({
           <div className="flex items-center gap-3">
             {/* Character Counter */}
             <span
+              id="outreach-char-count"
               className={`text-xs font-mono ${
                 isOverLimit
                   ? 'text-red-400'
