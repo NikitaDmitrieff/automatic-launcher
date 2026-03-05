@@ -10,13 +10,32 @@ export default function LaunchPage() {
   const [, setProjectData] = useState<ProjectInput | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function handleSubmit(data: ProjectInput) {
+  async function handleSubmit(data: ProjectInput) {
     setIsSubmitting(true);
     setProjectData(data);
-    // Store in sessionStorage so /results can read it
+
+    // Always store in sessionStorage as fallback
     if (typeof window !== 'undefined') {
       sessionStorage.setItem('projectInput', JSON.stringify(data));
     }
+
+    // Try to persist via API for shareable URL
+    try {
+      const res = await fetch('/api/plans', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        const plan = await res.json();
+        router.push(`/results?id=${plan.id}`);
+        return;
+      }
+    } catch {
+      // API failed — fall back to sessionStorage-only flow
+    }
+
     router.push('/results');
   }
 
