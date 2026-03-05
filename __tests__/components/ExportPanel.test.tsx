@@ -65,8 +65,8 @@ describe('ExportPanel', () => {
     await user.click(screen.getByLabelText('Copy launch plan as Markdown'));
     expect(screen.getByText('Copied!')).toBeDefined();
 
-    act(() => {
-      vi.advanceTimersByTime(2000);
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(2000);
     });
 
     expect(screen.getByText('Copy as Markdown')).toBeDefined();

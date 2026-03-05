@@ -102,7 +102,7 @@ describe('OutreachWorkspace', () => {
 
     await user.click(screen.getByText('Copy to clipboard'));
     // Wait for "Copied!" to revert back to "Copy to clipboard"
-    act(() => { vi.advanceTimersByTime(2000); });
+    await act(async () => { await vi.advanceTimersByTimeAsync(2000); });
     await user.click(screen.getByText('Copy to clipboard'));
 
     expect(screen.getByText(`1/${outreachTemplates.length} channels ready`)).toBeDefined();

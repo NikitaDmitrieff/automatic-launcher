@@ -141,8 +141,8 @@ describe('OutreachEditor', () => {
     await user.click(screen.getByText('Copy to clipboard'));
     expect(screen.getByText('Copied!')).toBeDefined();
 
-    act(() => {
-      vi.advanceTimersByTime(2000);
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(2000);
     });
 
     expect(screen.getByText('Copy to clipboard')).toBeDefined();
