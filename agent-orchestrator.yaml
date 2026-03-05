@@ -1,60 +1,65 @@
-project:
-  name: automatic-launcher
-  repo: NikitaDmitrieff/automatic-launcher
-  path: /tmp/jobs/automatic-launcher
-  description: "Lean launch copilot for solo indie hackers. Generates actionable launch plans with personalized channel recommendations, concrete links, and outreach playbooks."
+dataDir: ~/.agent-orchestrator
+worktreeDir: ~/.worktrees
+port: 3000
+defaults:
+  runtime: tmux
+  agent: claude-code
+  workspace: worktree
+  notifiers:
+    - desktop
+projects:
+  automatic-launcher:
+    name: automatic-launcher
+    sessionPrefix: al
+    repo: NikitaDmitrieff/automatic-launcher
+    path: /tmp/jobs/automatic-launcher
+    defaultBranch: main
+    agentRules: >-
+      You are building Automatic Launcher — a lean launch copilot for solo indie hackers.
 
-orchestrator:
-  auto_stop_hours: 4
-  max_parallel_agents: 4
-  merge_ready_prs: true
-  auto_spawn: true
-  no_interactive: true
 
-  prompt: |
-    You are orchestrating the build of Automatic Launcher — a lean launch copilot for solo indie hackers.
+      ## Project Vision
 
-    ## Project Vision
-    A minimalist glassmorphism web app where indie hackers input their project details and get:
-    1. A concise, actionable launch plan
-    2. Personalized channel recommendations with concrete links
-    3. An outreach playbook with templates
-    4. Early validation and sales actions
+      A minimalist glassmorphism web app where indie hackers input their project details and get:
+      1. A concise, actionable launch plan
+      2. Personalized channel recommendations with concrete links
+      3. An outreach playbook with templates
+      4. Early validation and sales actions
 
-    ## Tech Stack
-    - Next.js 15 (App Router), React 19, Tailwind CSS v4, TypeScript
-    - Vitest for testing
-    - Hybrid recommendation engine (rules + AI-generated advice)
 
-    ## Your Job
-    1. Create GitHub issues for each feature area (see below)
-    2. Spawn agents for each issue — each agent works on its own branch
-    3. Each agent makes multiple well-structured commits
-    4. Each agent opens a PR when done
-    5. Merge PRs that are ready
-    6. If Vercel token exists (`vercel whoami`), deploy; if not, skip deploy and continue
+      ## Tech Stack
 
-    ## Feature Issues to Create and Assign
-    1. **Landing Page** — Hero section with glassmorphism design, value prop, CTA. Mobile-first. Tailwind v4.
-    2. **Project Input Flow** — Form with: project name, short description, repo URL, demo URL (required fields). Collapsible advanced section with: target audience, stage, budget, timeline. Glassmorphism card style.
-    3. **Recommendation Engine** — Hybrid engine: rules-based channel matching (map project type/stage to channels) + generated personalized advice. Core logic in `src/lib/engine/`. Return structured launch plan.
-    4. **Channel & Link Suggestions** — Database of launch channels (Reddit, HN, PH, Twitter, IH, etc.) with concrete subreddit/community links. Filterable by project type. Display as cards with direct links.
-    5. **Outreach Workspace & Templates** — Copy-ready outreach templates for each channel. Personalized with project name/description. Include cold email, Reddit post, HN Show, tweet thread templates.
-    6. **Share & Export Results** — Export launch plan as markdown/PDF. Shareable link. Copy-to-clipboard for individual sections.
-    7. **Tests & CI** — Vitest unit tests for engine logic, component tests. GitHub Actions CI pipeline. Lint + type-check + test on PR.
-    8. **Documentation** — README with setup instructions, architecture overview, contributing guide. Keep it concise.
+      - Next.js 15 (App Router), React 19, Tailwind CSS v4, TypeScript
 
-    ## Rules
-    - NO interactive prompts — if something needs a credential, skip and log clearly
-    - Each agent: own branch (feat/<feature-name>), multiple commits, open PR
-    - Conventional commits: feat:, fix:, test:, docs:, chore:
-    - Run `pnpm install` before starting work (first agent should do initial setup)
-    - Keep glassmorphism aesthetic consistent: backdrop-blur, semi-transparent backgrounds, subtle borders
-    - Mobile-first responsive design
-    - All components in `src/components/`, logic in `src/lib/`, types in `src/types/`
+      - Vitest for testing
 
-agents:
-  defaults:
-    model: opus
-    permission_mode: dangerously-skip-permissions
-    no_interactive: true
+      - Use pnpm as package manager
+
+      - Hybrid recommendation engine (rules + AI-generated advice)
+
+
+      ## Rules
+
+      - NO interactive prompts — if something needs a credential, skip and log clearly
+
+      - Use conventional commits (feat:, fix:, test:, docs:, chore:)
+
+      - Link issue numbers in commit messages
+
+      - Keep glassmorphism aesthetic consistent: backdrop-blur, semi-transparent backgrounds, subtle borders, dark theme
+
+      - Mobile-first responsive design
+
+      - All components in src/components/, logic in src/lib/, types in src/types/
+
+      - Use functional components with hooks
+
+      - Use Server Components by default, Client Components only when needed
+
+      - Run pnpm install before starting if node_modules is missing
+
+      - Before pushing run: pnpm lint and pnpm test (skip if scripts not yet available)
+
+      - Prefer const over let, never use var
+
+      - No any types - use unknown with type guards instead
