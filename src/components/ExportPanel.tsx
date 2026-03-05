@@ -57,6 +57,7 @@ function ExportPanel({ data }: ExportPanelProps) {
       <div className="flex flex-wrap gap-3">
         <button
           onClick={handleCopyMarkdown}
+          aria-label="Copy launch plan as Markdown"
           className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-white/20 active:scale-95"
         >
           {markdownCopyState === 'copied' ? (
@@ -74,6 +75,7 @@ function ExportPanel({ data }: ExportPanelProps) {
 
         <button
           onClick={handleDownloadMarkdown}
+          aria-label="Download launch plan as Markdown file"
           className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-white/20 active:scale-95"
         >
           <DownloadIcon />
@@ -82,6 +84,7 @@ function ExportPanel({ data }: ExportPanelProps) {
 
         <button
           onClick={handleDownloadJSON}
+          aria-label="Download launch plan as JSON file"
           className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-white/20 active:scale-95"
         >
           <DownloadIcon />
@@ -97,6 +100,7 @@ function ExportPanel({ data }: ExportPanelProps) {
         <p className="mb-2 text-sm text-white/60">Share your launch plan</p>
         <button
           onClick={handleCopyLink}
+          aria-label="Copy shareable link to clipboard"
           className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-white/20 active:scale-95"
         >
           {linkCopyState === 'copied' ? (
