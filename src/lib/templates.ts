@@ -173,6 +173,107 @@ Best,
     ],
   },
   {
+    id: 'devto-article',
+    channelName: 'Dev.to',
+    channelType: 'devto',
+    subject: '{{projectName}} - {{description}}',
+    body: `---
+title: "I built {{projectName}} — {{description}}"
+published: true
+tags: showdev, webdev, opensource, productivity
+---
+
+I just launched **{{projectName}}** and wanted to share the journey with the Dev.to community.
+
+## The Problem
+
+[Describe the pain point you experienced firsthand]
+
+## The Solution
+
+{{projectName}} — {{description}}.
+
+## How It Works
+
+[Walk through the core architecture or workflow — include code snippets]
+
+\`\`\`typescript
+// Example usage
+\`\`\`
+
+## Tech Stack
+
+- [Framework]
+- [Database]
+- [Deployment]
+
+## Try It Out
+
+{{demoUrl}}
+
+## What's Next
+
+I'd love your feedback. What features would make this more useful? Drop a comment or open an issue.`,
+    tips: [
+      'DO: Write a genuine technical article, not a product pitch',
+      'DO: Include code snippets and architecture decisions',
+      'DO: Use relevant tags (#showdev is key for launches)',
+      'DO: Engage with comments — Dev.to rewards active authors',
+      "DON'T: Write a thin marketing post — Dev.to readers want depth",
+      "DON'T: Spam tags — stick to 4 relevant ones",
+      "DON'T: Skip the personal story — why you built it matters",
+      "DON'T: Forget to cross-post from your blog if you have one",
+    ],
+  },
+  {
+    id: 'indiehackers-post',
+    channelName: 'Indie Hackers',
+    channelType: 'indiehackers',
+    subject: '{{projectName}} — {{description}}',
+    body: `Hey IH!
+
+I just launched **{{projectName}}** — {{description}}.
+
+## The backstory
+
+[Share why you started building this — what problem were you facing?]
+
+## What I built
+
+{{projectName}} helps [target user] do [core value prop]. Here's a quick look: {{demoUrl}}
+
+## Key numbers
+
+- Time to build: [X weeks/months]
+- Tech stack: [brief]
+- Current users/signups: [be transparent]
+- Revenue: [even if $0 — IH respects honesty]
+
+## What worked for launch
+
+- [Tactic 1]
+- [Tactic 2]
+
+## What I'd do differently
+
+- [Lesson 1]
+- [Lesson 2]
+
+## Ask
+
+I'd love feedback from this community. What would make you use this? What's missing?`,
+    tips: [
+      'DO: Share real numbers — revenue, users, costs. IH loves transparency',
+      'DO: Focus on the journey and lessons, not just the product',
+      'DO: Engage in other IH discussions before and after posting',
+      'DO: Create a product page on IH to build long-term presence',
+      "DON'T: Write a press release — keep it conversational",
+      "DON'T: Hide behind vanity metrics — be honest about traction",
+      "DON'T: Post without engaging with the community first",
+      "DON'T: Ignore the milestone/group features — they drive visibility",
+    ],
+  },
+  {
     id: 'community-post',
     channelName: 'Community (Discord/Slack)',
     channelType: 'community',

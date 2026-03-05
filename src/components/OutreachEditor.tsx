@@ -11,6 +11,8 @@ const channelIcons: Record<OutreachTemplate['channelType'], string> = {
   linkedin: 'in',
   email: '@',
   community: '#',
+  devto: 'D',
+  indiehackers: 'IH',
 };
 
 interface OutreachEditorProps {
