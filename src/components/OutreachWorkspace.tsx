@@ -42,8 +42,8 @@ export default function OutreachWorkspace({
   const progressPercent = Math.round((progress / total) * 100);
 
   return (
-    <div className="min-h-screen bg-[var(--bg-page)] text-[var(--text-primary)] p-4 md:p-8">
-      <div className="max-w-6xl mx-auto space-y-6">
+    <div className="text-[var(--text-primary)]">
+      <div className="space-y-6">
         {/* Header */}
         <div className="space-y-2">
           <h2 className="text-2xl font-bold tracking-tight text-[var(--text-primary)]">

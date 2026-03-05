@@ -5,9 +5,10 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import ChannelList from '@/components/ChannelList';
 import ExportPanel from '@/components/ExportPanel';
+import OutreachWorkspace from '@/components/OutreachWorkspace';
 import { generateRecommendations } from '@/lib/engine';
 import type { ProjectInput } from '@/types/project';
-import type { ChannelRecommendation } from '@/types/recommendation';
+import type { ChannelRecommendation, TimelineItem, OutreachTemplate } from '@/types/recommendation';
 
 function ResultsContent() {
   const router = useRouter();
@@ -15,7 +16,11 @@ function ResultsContent() {
   const planId = searchParams.get('id');
 
   const [channels, setChannels] = useState<ChannelRecommendation[] | null>(null);
+  const [timeline, setTimeline] = useState<TimelineItem[]>([]);
+  const [outreachTemplates, setOutreachTemplates] = useState<OutreachTemplate[]>([]);
   const [projectName, setProjectName] = useState('');
+  const [projectDescription, setProjectDescription] = useState('');
+  const [projectDemoUrl, setProjectDemoUrl] = useState('');
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -27,12 +32,18 @@ function ResultsContent() {
           if (res.ok) {
             const plan = await res.json();
             setProjectName(plan.input.projectName);
+            setProjectDescription(plan.input.description ?? '');
+            setProjectDemoUrl(plan.input.demoUrl ?? '');
             if (plan.recommendations?.channels) {
               setChannels(plan.recommendations.channels);
+              setTimeline(plan.recommendations.timeline ?? []);
+              setOutreachTemplates(plan.recommendations.outreachTemplates ?? []);
             } else {
               // Regenerate from stored input if recommendations missing
               const recs = generateRecommendations(plan.input);
               setChannels(recs.channels);
+              setTimeline(recs.timeline);
+              setOutreachTemplates(recs.outreachTemplates);
             }
             return;
           }
@@ -54,8 +65,12 @@ function ResultsContent() {
       try {
         const input: ProjectInput = JSON.parse(raw);
         setProjectName(input.projectName);
+        setProjectDescription(input.description ?? '');
+        setProjectDemoUrl(input.demoUrl ?? '');
         const plan = generateRecommendations(input);
         setChannels(plan.channels);
+        setTimeline(plan.timeline);
+        setOutreachTemplates(plan.outreachTemplates);
       } catch {
         router.push('/launch');
       }
@@ -118,6 +133,15 @@ function ResultsContent() {
         {/* Channel list */}
         <ChannelList recommendations={channels} />
 
+        {/* Outreach Workspace */}
+        <div className="mt-10">
+          <OutreachWorkspace
+            projectName={projectName}
+            description={projectDescription}
+            demoUrl={projectDemoUrl}
+          />
+        </div>
+
         {/* Export & Share */}
         <div className="mt-10">
           <ExportPanel
@@ -129,8 +153,16 @@ function ResultsContent() {
                 reason: c.reason,
                 actionItems: c.actionItems,
               })),
-              timeline: [],
-              templates: [],
+              timeline: timeline.map((t) => ({
+                day: t.day,
+                title: t.title,
+                tasks: t.tasks,
+              })),
+              templates: outreachTemplates.map((t) => ({
+                channelName: t.channelName,
+                subject: t.subject,
+                body: t.body,
+              })),
             }}
             planId={planId ?? undefined}
           />
