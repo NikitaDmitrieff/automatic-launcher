@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createPlan, getAllPlans } from '@/lib/store';
 import { ProjectInput } from '@/types/project';
+import { generateRecommendations } from '@/lib/engine';
 
 export async function GET() {
   const plans = getAllPlans();
@@ -18,20 +19,25 @@ export async function POST(request: Request) {
     );
   }
 
+  const input: ProjectInput = {
+    projectName,
+    description,
+    repoUrl,
+    demoUrl,
+    targetAudience: body.targetAudience,
+    category: body.category,
+    budget: body.budget,
+    timeline: body.timeline,
+  };
+
+  const recommendations = generateRecommendations(input);
+
   const now = new Date().toISOString();
   const plan = createPlan({
     id: crypto.randomUUID(),
-    input: {
-      projectName,
-      description,
-      repoUrl,
-      demoUrl,
-      targetAudience: body.targetAudience,
-      category: body.category,
-      budget: body.budget,
-      timeline: body.timeline,
-    },
-    channels: [],
+    input,
+    channels: recommendations.channels.map((c) => c.channel.name),
+    recommendations,
     createdAt: now,
     updatedAt: now,
   });
