@@ -12,7 +12,7 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
   const [errors, setErrors] = useState<Partial<Record<keyof ProjectInput, string>>>({});
 
   const [formData, setFormData] = useState<ProjectInput>({
-    name: '',
+    projectName: '',
     description: '',
     repoUrl: '',
     demoUrl: '',
@@ -32,7 +32,7 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
   function validate(): boolean {
     const next: Partial<Record<keyof ProjectInput, string>> = {};
 
-    if (!formData.name.trim()) next.name = 'Project name is required';
+    if (!formData.projectName.trim()) next.projectName = 'Project name is required';
     if (!formData.description.trim()) next.description = 'Description is required';
     if (!formData.repoUrl.trim()) next.repoUrl = 'Repository URL is required';
     if (!formData.demoUrl.trim()) next.demoUrl = 'Demo URL is required';
@@ -64,18 +64,18 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
         <div className="space-y-5">
           {/* Project Name */}
           <div>
-            <label htmlFor="name" className={labelClass}>
+            <label htmlFor="projectName" className={labelClass}>
               Project Name
             </label>
             <input
-              id="name"
+              id="projectName"
               type="text"
               placeholder="My Awesome App"
               className={inputClass}
-              value={formData.name}
-              onChange={(e) => updateField('name', e.target.value)}
+              value={formData.projectName}
+              onChange={(e) => updateField('projectName', e.target.value)}
             />
-            {errors.name && <p className="mt-1 text-sm text-red-400">{errors.name}</p>}
+            {errors.projectName && <p className="mt-1 text-sm text-red-400">{errors.projectName}</p>}
           </div>
 
           {/* Description */}
@@ -155,14 +155,24 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
                 <label htmlFor="targetAudience" className={labelClass}>
                   Target Audience
                 </label>
-                <input
+                <select
                   id="targetAudience"
-                  type="text"
-                  placeholder="e.g. indie hackers, frontend devs, small teams"
                   className={inputClass}
                   value={formData.targetAudience ?? ''}
-                  onChange={(e) => updateField('targetAudience', e.target.value)}
-                />
+                  onChange={(e) =>
+                    updateField(
+                      'targetAudience',
+                      (e.target.value || undefined) as ProjectInput['targetAudience'],
+                    )
+                  }
+                >
+                  <option value="">Select target audience</option>
+                  <option value="developers">Developers</option>
+                  <option value="designers">Designers</option>
+                  <option value="marketers">Marketers</option>
+                  <option value="founders">Founders</option>
+                  <option value="general">General</option>
+                </select>
               </div>
 
               {/* Category */}
@@ -184,7 +194,7 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
                   <option value="">Select a category</option>
                   <option value="saas">SaaS</option>
                   <option value="devtool">Developer Tool</option>
-                  <option value="mobile">Mobile App</option>
+                  <option value="mobile-app">Mobile App</option>
                   <option value="marketplace">Marketplace</option>
                   <option value="content">Content / Media</option>
                   <option value="other">Other</option>
@@ -208,7 +218,7 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
                   }
                 >
                   <option value="">Select budget</option>
-                  <option value="free">Free</option>
+                  <option value="zero">Free ($0)</option>
                   <option value="low">Low (&lt; $100)</option>
                   <option value="medium">Medium ($100 - $500)</option>
                 </select>
@@ -231,9 +241,9 @@ export default function ProjectForm({ onSubmit }: ProjectFormProps) {
                   }
                 >
                   <option value="">Select timeline</option>
-                  <option value="24h">24 hours</option>
-                  <option value="1week">1 week</option>
-                  <option value="2weeks">2 weeks</option>
+                  <option value="rush">Rush (24 hours)</option>
+                  <option value="standard">Standard (1 week)</option>
+                  <option value="relaxed">Relaxed (2 weeks)</option>
                 </select>
               </div>
             </div>
