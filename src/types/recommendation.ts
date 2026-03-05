@@ -1,3 +1,4 @@
+import type { OutreachTemplate } from './outreach';
 export type { OutreachTemplate } from './outreach';
 
 export interface Channel {
