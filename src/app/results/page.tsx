@@ -56,6 +56,7 @@ function ResultsContent() {
       }
 
       // Fallback: load from sessionStorage (backward compat)
+      if (typeof window === 'undefined') return;
       const raw = sessionStorage.getItem('projectInput');
       if (!raw) {
         router.push('/launch');

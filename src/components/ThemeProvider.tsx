@@ -17,6 +17,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>('dark');
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const stored = localStorage.getItem('theme') as Theme | null;
     if (stored === 'light' || stored === 'dark') {
       setTheme(stored);
@@ -27,8 +28,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   function toggleTheme() {
     const next = theme === 'dark' ? 'light' : 'dark';
     setTheme(next);
-    localStorage.setItem('theme', next);
-    document.documentElement.setAttribute('data-theme', next);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('theme', next);
+      document.documentElement.setAttribute('data-theme', next);
+    }
   }
 
   return (
