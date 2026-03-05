@@ -14,11 +14,17 @@ export const createPlanSchema = z.object({
   repoUrl: z
     .string()
     .url('Invalid URL format for repository URL')
+    .refine((url) => url.startsWith('https://'), {
+      message: 'URL must start with https://',
+    })
     .optional()
     .or(z.literal('')),
   demoUrl: z
     .string()
     .url('Invalid URL format for demo URL')
+    .refine((url) => url.startsWith('https://'), {
+      message: 'URL must start with https://',
+    })
     .optional()
     .or(z.literal('')),
   tags: z.array(z.string()).optional(),
