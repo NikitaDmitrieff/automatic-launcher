@@ -16,6 +16,13 @@
 </p>
 
 <p align="center">
+  <a href="https://automatic-launcher.vercel.app"><img src="https://img.shields.io/badge/live%20demo-automatic--launcher.vercel.app-black?style=for-the-badge&logo=vercel" alt="Live Demo" /></a>
+  &nbsp;
+  <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FNikitaDmitrieff%2Fautomatic-launcher"><img src="https://vercel.com/button" alt="Deploy with Vercel" /></a>
+</p>
+
+<p align="center">
+  <a href="https://automatic-launcher.vercel.app">Live Demo</a> &middot;
   <a href="#quickstart">Quickstart</a> &middot;
   <a href="#features">Features</a> &middot;
   <a href="#how-it-works">How It Works</a> &middot;
