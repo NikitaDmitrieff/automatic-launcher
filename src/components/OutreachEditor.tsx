@@ -55,14 +55,7 @@ export default function OutreachEditor({
       setCopied(true);
       onMarkDone(template.id);
     } catch {
-      const textarea = document.createElement('textarea');
-      textarea.value = fullText;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-      setCopied(true);
-      onMarkDone(template.id);
+      // Clipboard API unavailable — fail silently
     }
   }, [subject, body, template.id, onMarkDone]);
 
@@ -183,7 +176,7 @@ export default function OutreachEditor({
                 const isDont = tip.startsWith("DON'T:");
                 return (
                   <li
-                    key={i}
+                    key={`tip-${template.id}-${i}`}
                     className={`text-xs leading-relaxed ${
                       isDo
                         ? 'text-[var(--text-tertiary)]'

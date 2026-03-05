@@ -87,7 +87,7 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
         <h4 className="mb-2 text-[11px] font-medium text-[var(--text-muted)] uppercase tracking-wider">Action items</h4>
         <ul className="space-y-1.5">
           {actionItems.map((item, index) => (
-            <li key={index} className="flex items-start gap-2">
+            <li key={`action-${channel.name}-${index}`} className="flex items-start gap-2">
               <button
                 onClick={() => toggleItem(index)}
                 aria-label={`Mark "${item}" as ${checkedItems[index] ? 'incomplete' : 'complete'}`}
