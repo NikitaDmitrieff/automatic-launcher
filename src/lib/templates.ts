@@ -173,6 +173,40 @@ Best,
     ],
   },
   {
+    id: 'indiehackers-post',
+    channelName: 'Indie Hackers',
+    channelType: 'community',
+    subject: '{{projectName}} - {{description}}',
+    body: `Hey IH!
+
+I just launched **{{projectName}}** - {{description}}.
+
+**Why I built this:** [What problem did you personally hit?]
+
+**How it works:** [1-2 sentence explanation]
+
+**Revenue/traction so far:** [Be transparent - even if it's $0]
+
+**Try it here:** {{demoUrl}}
+
+I'd love to hear:
+- Does this solve a real problem for you?
+- What would you charge for this (or would you pay for it)?
+- Any features you'd want before using it daily?
+
+Happy to share more about the build process, tech stack, or go-to-market strategy.`,
+    tips: [
+      'DO: Share real numbers - IH loves transparency about revenue and growth',
+      'DO: Explain your motivation and the problem you faced personally',
+      'DO: Engage in the comments and answer every question thoroughly',
+      'DO: Post in relevant groups (SaaS, Developer Tools, etc.)',
+      "DON'T: Write a generic launch post - IH values authenticity over polish",
+      "DON'T: Skip the business context - IH cares about viability, not just features",
+      "DON'T: Ignore follow-up questions - the community rewards engaged founders",
+      "DON'T: Spam multiple groups with the same post",
+    ],
+  },
+  {
     id: 'community-post',
     channelName: 'Community (Discord/Slack)',
     channelType: 'community',
