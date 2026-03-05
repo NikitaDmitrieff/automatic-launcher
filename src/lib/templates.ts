@@ -145,6 +145,57 @@ If you know someone who could benefit from this, I'd appreciate a share.
     ],
   },
   {
+    id: 'devto-post',
+    channelName: 'Dev.to',
+    channelType: 'devto',
+    subject: '{{projectName}} - {{description}}',
+    body: `---
+title: "I built {{projectName}} — {{description}}"
+published: true
+tags: showdev, webdev, opensource, productivity
+---
+
+I just launched **{{projectName}}** and wanted to share it with the Dev.to community.
+
+## The Problem
+
+[Describe the pain point you experienced]
+
+## The Solution
+
+{{projectName}} — {{description}}.
+
+## How It Works
+
+[Walk through the core functionality with code snippets or screenshots]
+
+\`\`\`
+// Example usage or code snippet
+\`\`\`
+
+## Tech Stack
+
+- [Framework / Language]
+- [Database / Infrastructure]
+- [Notable libraries]
+
+## Try It Out
+
+Check it out here: {{demoUrl}}
+
+I'd love your feedback — what features would you want to see next?`,
+    tips: [
+      'DO: Use the #showdev tag to reach builders and early adopters',
+      'DO: Include code snippets, diagrams, or screenshots to make it engaging',
+      'DO: Write a genuine build story — Dev.to rewards authenticity',
+      'DO: Respond to every comment to boost visibility in the feed',
+      "DON'T: Write a pure marketing pitch — Dev.to readers want technical substance",
+      "DON'T: Skimp on formatting — use headers, lists, and code blocks",
+      "DON'T: Cross-post identical content without adding Dev.to-specific context",
+      "DON'T: Forget to add relevant tags (max 4 tags per post)",
+    ],
+  },
+  {
     id: 'cold-email',
     channelName: 'Cold Email',
     channelType: 'email',
