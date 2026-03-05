@@ -15,7 +15,7 @@ export default function ResultsError({
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-purple-950 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[var(--bg-page)] flex items-center justify-center px-4">
       <div className="glass max-w-md w-full rounded-2xl p-8 text-center">
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-500/10 border border-red-500/20">
           <svg
@@ -33,10 +33,10 @@ export default function ResultsError({
           </svg>
         </div>
 
-        <h1 className="text-2xl font-bold text-white mb-2">
+        <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">
           Failed to load your launch plan
         </h1>
-        <p className="text-white/50 mb-8">
+        <p className="text-[var(--text-muted)] mb-8">
           Something went wrong while generating your recommendations. Please try
           again or go back to update your project details.
         </p>
@@ -47,7 +47,7 @@ export default function ResultsError({
               {error.message}
             </p>
             {error.digest && (
-              <p className="mt-2 text-xs text-white/30">
+              <p className="mt-2 text-xs text-[var(--text-faint)]">
                 Digest: {error.digest}
               </p>
             )}
@@ -57,7 +57,7 @@ export default function ResultsError({
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <button
             onClick={reset}
-            className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-6 py-3 text-sm font-medium text-white transition-all duration-300 hover:bg-white/20 border border-white/10 hover:border-white/20"
+            className="inline-flex items-center gap-2 rounded-xl bg-[var(--surface-8)] px-6 py-3 text-sm font-medium text-[var(--text-primary)] transition-all duration-300 hover:bg-[var(--surface-6)] border border-[var(--border-medium)] hover:border-[var(--border-hover)]"
           >
             <svg
               className="h-4 w-4"
@@ -77,7 +77,7 @@ export default function ResultsError({
 
           <Link
             href="/launch"
-            className="inline-flex items-center gap-2 rounded-xl bg-white/5 px-6 py-3 text-sm font-medium text-white/70 transition-all duration-300 hover:bg-white/10 hover:text-white border border-white/5 hover:border-white/10"
+            className="inline-flex items-center gap-2 rounded-xl bg-[var(--surface-4)] px-6 py-3 text-sm font-medium text-[var(--text-secondary)] transition-all duration-300 hover:bg-[var(--surface-8)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)] hover:border-[var(--border-medium)]"
           >
             <svg
               className="h-4 w-4"

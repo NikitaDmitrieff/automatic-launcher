@@ -52,7 +52,7 @@ export default function ChannelList({ recommendations }: { recommendations: Chan
       {/* Controls */}
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         {/* Filter tabs */}
-        <div role="tablist" aria-label="Filter channels by type" className="flex flex-wrap gap-1 rounded-lg border border-white/[0.06] bg-white/[0.02] p-1">
+        <div role="tablist" aria-label="Filter channels by type" className="flex flex-wrap gap-1 rounded-lg border border-[var(--border)] bg-[var(--surface-2)] p-1">
           {tabs.map((tab) => (
             <button
               key={tab.value}
@@ -62,8 +62,8 @@ export default function ChannelList({ recommendations }: { recommendations: Chan
               onClick={() => handleTypeChange(tab.value)}
               className={`rounded-md px-3 py-1.5 text-sm font-medium transition-all ${
                 activeType === tab.value
-                  ? 'bg-white/[0.08] text-white'
-                  : 'text-zinc-600 hover:text-zinc-400'
+                  ? 'bg-[var(--surface-8)] text-[var(--text-primary)]'
+                  : 'text-[var(--text-muted)] hover:text-[var(--text-tertiary)]'
               }`}
             >
               {tab.label}
@@ -73,13 +73,13 @@ export default function ChannelList({ recommendations }: { recommendations: Chan
 
         {/* Sort select */}
         <div className="flex items-center gap-2">
-          <label htmlFor="channel-sort" className="text-xs text-zinc-600 uppercase tracking-wider">Sort by</label>
+          <label htmlFor="channel-sort" className="text-xs text-[var(--text-muted)] uppercase tracking-wider">Sort by</label>
           <select
             id="channel-sort"
             value={sortBy}
             onChange={handleSortChange}
             aria-label="Sort channels"
-            className="rounded-lg border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-sm text-zinc-400 outline-none transition-colors focus:border-white/[0.15]"
+            className="rounded-lg border border-[var(--border-medium)] bg-[var(--surface-4)] px-3 py-1.5 text-sm text-[var(--text-tertiary)] outline-none transition-colors focus:border-[var(--border-hover)]"
           >
             <option value="relevance">Relevance</option>
             <option value="effort">Effort (low first)</option>
@@ -88,7 +88,7 @@ export default function ChannelList({ recommendations }: { recommendations: Chan
       </div>
 
       {/* Results count */}
-      <p className="mb-4 text-xs text-zinc-600 font-[family-name:var(--font-code)]">
+      <p className="mb-4 text-xs text-[var(--text-muted)] font-[family-name:var(--font-code)]">
         {filtered.length} channel{filtered.length !== 1 ? 's' : ''} found
       </p>
 
@@ -102,7 +102,7 @@ export default function ChannelList({ recommendations }: { recommendations: Chan
       </div>
 
       {filtered.length === 0 && (
-        <div className="py-16 text-center text-zinc-700">
+        <div className="py-16 text-center text-[var(--text-faint)]">
           No channels match this filter.
         </div>
       )}

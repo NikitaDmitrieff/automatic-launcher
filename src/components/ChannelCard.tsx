@@ -14,7 +14,7 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
   const scorePercent = Math.round(relevanceScore * 100);
 
   return (
-    <div role="article" className="group relative rounded-xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]">
+    <div role="article" className="group relative rounded-xl border border-[var(--border)] bg-[var(--surface-2)] p-6 transition-all duration-300 hover:border-[var(--border-hover)] hover:bg-[var(--surface-4)]">
       {/* Header */}
       <div className="mb-4 flex items-start justify-between gap-3">
         <a
@@ -22,11 +22,11 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`${channel.name} (opens in new tab)`}
-          className="flex items-center gap-2 text-sm font-bold text-zinc-100 transition-colors hover:text-white"
+          className="flex items-center gap-2 text-sm font-bold text-[var(--text-primary)] transition-colors hover:text-[var(--text-primary)]"
         >
           {channel.name}
           <svg
-            className="h-3.5 w-3.5 shrink-0 text-zinc-600 transition-colors group-hover:text-zinc-400"
+            className="h-3.5 w-3.5 shrink-0 text-[var(--text-muted)] transition-colors group-hover:text-[var(--text-tertiary)]"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -41,7 +41,7 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
           </svg>
           <span className="sr-only">(opens in new tab)</span>
         </a>
-        <span className="shrink-0 rounded-full border border-white/[0.08] bg-white/[0.04] px-2.5 py-0.5 text-[11px] font-medium text-zinc-500">
+        <span className="shrink-0 rounded-full border border-[var(--border-medium)] bg-[var(--surface-4)] px-2.5 py-0.5 text-[11px] font-medium text-[var(--text-muted)]">
           {channel.type}
         </span>
       </div>
@@ -49,42 +49,42 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
       {/* Relevance score bar */}
       <div className="mb-4">
         <div className="mb-1 flex items-center justify-between text-xs">
-          <span className="text-zinc-600">Relevance</span>
-          <span className="font-medium font-[family-name:var(--font-code)] text-zinc-500">{scorePercent}%</span>
+          <span className="text-[var(--text-muted)]">Relevance</span>
+          <span className="font-medium font-[family-name:var(--font-code)] text-[var(--text-secondary)]">{scorePercent}%</span>
         </div>
-        <div className="h-1 w-full overflow-hidden rounded-full bg-white/[0.06]">
+        <div className="h-1 w-full overflow-hidden rounded-full bg-[var(--surface-6)]">
           <div
-            className="h-full rounded-full bg-white/30 transition-all duration-500"
+            className="h-full rounded-full bg-[var(--progress-fill)] transition-all duration-500"
             style={{ width: `${scorePercent}%` }}
           />
         </div>
       </div>
 
       {/* Description */}
-      <p className="mb-4 text-sm leading-relaxed text-zinc-500">{channel.description}</p>
+      <p className="mb-4 text-sm leading-relaxed text-[var(--text-secondary)]">{channel.description}</p>
 
       {/* Badges */}
       <div className="mb-4 flex flex-wrap gap-2">
-        <span className="rounded-full bg-white/[0.04] border border-white/[0.06] px-2.5 py-0.5 text-[11px] text-zinc-500">
+        <span className="rounded-full bg-[var(--surface-4)] border border-[var(--border)] px-2.5 py-0.5 text-[11px] text-[var(--text-muted)]">
           {channel.audienceSize}
         </span>
-        <span className="rounded-full bg-white/[0.04] border border-white/[0.06] px-2.5 py-0.5 text-[11px] text-zinc-500">
+        <span className="rounded-full bg-[var(--surface-4)] border border-[var(--border)] px-2.5 py-0.5 text-[11px] text-[var(--text-muted)]">
           {channel.effort} effort
         </span>
-        <span className="rounded-full bg-white/[0.04] border border-white/[0.06] px-2.5 py-0.5 text-[11px] text-zinc-500">
+        <span className="rounded-full bg-[var(--surface-4)] border border-[var(--border)] px-2.5 py-0.5 text-[11px] text-[var(--text-muted)]">
           {channel.cost === 'free' ? 'Free' : `${channel.cost} cost`}
         </span>
       </div>
 
       {/* Why recommended */}
-      <div className="mb-4 rounded-lg bg-white/[0.03] border border-white/[0.04] p-3">
-        <h4 className="mb-1 text-[11px] font-medium text-zinc-600 uppercase tracking-wider">Why recommended</h4>
-        <p className="text-sm text-zinc-400">{reason}</p>
+      <div className="mb-4 rounded-lg bg-[var(--surface-3)] border border-[var(--border-subtle)] p-3">
+        <h4 className="mb-1 text-[11px] font-medium text-[var(--text-muted)] uppercase tracking-wider">Why recommended</h4>
+        <p className="text-sm text-[var(--text-tertiary)]">{reason}</p>
       </div>
 
       {/* Action items */}
       <div>
-        <h4 className="mb-2 text-[11px] font-medium text-zinc-600 uppercase tracking-wider">Action items</h4>
+        <h4 className="mb-2 text-[11px] font-medium text-[var(--text-muted)] uppercase tracking-wider">Action items</h4>
         <ul className="space-y-1.5">
           {actionItems.map((item, index) => (
             <li key={index} className="flex items-start gap-2">
@@ -93,8 +93,8 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
                 aria-label={`Mark "${item}" as ${checkedItems[index] ? 'incomplete' : 'complete'}`}
                 className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border transition-colors ${
                   checkedItems[index]
-                    ? 'border-zinc-500 bg-white text-black'
-                    : 'border-white/[0.12] bg-transparent hover:border-white/[0.25]'
+                    ? 'border-[var(--text-secondary)] bg-[var(--accent-bg)] text-[var(--accent-text)]'
+                    : 'border-[var(--border-hover)] bg-transparent hover:border-[var(--border-focus)]'
                 }`}
               >
                 {checkedItems[index] && (
@@ -105,7 +105,7 @@ function ChannelCard({ recommendation }: { recommendation: ChannelRecommendation
               </button>
               <span
                 className={`text-sm transition-colors ${
-                  checkedItems[index] ? 'text-zinc-700 line-through' : 'text-zinc-500'
+                  checkedItems[index] ? 'text-[var(--text-faint)] line-through' : 'text-[var(--text-secondary)]'
                 }`}
               >
                 {item}
