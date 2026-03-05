@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-[var(--bg-page)]">
@@ -7,12 +9,12 @@ export default function Home() {
           <span className="text-sm font-bold tracking-widest text-[var(--text-primary)] uppercase">
             Automatic Launcher
           </span>
-          <a
+          <Link
             href="/launch"
             className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-secondary)]"
           >
             Launch
-          </a>
+          </Link>
         </div>
       </nav>
 
@@ -37,7 +39,7 @@ export default function Home() {
             timeline.
           </p>
 
-          <a
+          <Link
             href="/launch"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-[var(--accent-bg)] text-[var(--accent-text)] text-sm font-semibold transition-all duration-150 hover:bg-[var(--accent-hover)] active:scale-[0.97]"
           >
@@ -55,7 +57,7 @@ export default function Home() {
                 d="M13 7l5 5m0 0l-5 5m5-5H6"
               />
             </svg>
-          </a>
+          </Link>
         </div>
       </main>
 
