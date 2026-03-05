@@ -37,11 +37,13 @@ export async function PUT(
     );
   }
 
-  const updated = updatePlan(id, result.data);
-
-  if (!updated) {
+  const existing = getPlan(id);
+  if (!existing) {
     return NextResponse.json({ error: 'Plan not found' }, { status: 404 });
   }
+
+  const updatedInput = { ...existing.input, ...result.data };
+  const updated = updatePlan(id, { input: updatedInput })!;
 
   return NextResponse.json(updated);
 }
