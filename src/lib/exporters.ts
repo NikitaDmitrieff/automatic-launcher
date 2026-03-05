@@ -64,19 +64,10 @@ export function exportToJSON(data: ExportData): string {
 }
 
 export async function copyToClipboard(text: string): Promise<void> {
-  if (typeof navigator !== 'undefined' && navigator.clipboard) {
-    await navigator.clipboard.writeText(text);
-  } else {
-    // Fallback for older browsers
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    textarea.style.position = 'fixed';
-    textarea.style.opacity = '0';
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textarea);
+  if (typeof navigator === 'undefined' || !navigator.clipboard) {
+    throw new Error('Clipboard API is not available in this environment');
   }
+  await navigator.clipboard.writeText(text);
 }
 
 export function downloadFile(
