@@ -4,6 +4,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'Reddit r/SideProject',
     type: 'community',
+    audience: 'general',
+    outreachType: 'reddit',
     url: 'https://www.reddit.com/r/SideProject/',
     description: 'Community for sharing and getting feedback on side projects.',
     audienceSize: '200k+ members',
@@ -13,6 +15,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'Reddit r/startups',
     type: 'community',
+    audience: 'general',
+    outreachType: 'reddit',
     url: 'https://www.reddit.com/r/startups/',
     description: 'Startup-focused community for founders sharing progress and seeking advice.',
     audienceSize: '1.2M+ members',
@@ -22,6 +26,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'Reddit r/indiehackers',
     type: 'community',
+    audience: 'general',
+    outreachType: 'reddit',
     url: 'https://www.reddit.com/r/indiehackers/',
     description: 'Subreddit for indie hackers building profitable online businesses.',
     audienceSize: '50k+ members',
@@ -31,6 +37,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'Reddit r/webdev',
     type: 'community',
+    audience: 'developer',
+    outreachType: 'reddit',
     url: 'https://www.reddit.com/r/webdev/',
     description: 'Web development community for sharing projects and tools.',
     audienceSize: '2M+ members',
@@ -40,6 +48,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'Hacker News (Show HN)',
     type: 'news',
+    audience: 'developer',
+    outreachType: 'hackernews',
     url: 'https://news.ycombinator.com/showhn.html',
     description: 'Show HN is for sharing your own work. Tech-savvy audience with high-quality discussion.',
     audienceSize: '10M+ monthly visitors',
@@ -49,6 +59,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'Product Hunt',
     type: 'directory',
+    audience: 'product',
+    outreachType: 'producthunt',
     url: 'https://www.producthunt.com/',
     description: 'The go-to platform for launching new products. Strong community of early adopters.',
     audienceSize: '5M+ monthly visitors',
@@ -58,6 +70,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'Indie Hackers',
     type: 'community',
+    audience: 'product',
+    outreachType: 'indiehackers',
     url: 'https://www.indiehackers.com/',
     description: 'Community of founders sharing revenue numbers, strategies, and launch stories.',
     audienceSize: '100k+ members',
@@ -67,6 +81,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'Dev.to',
     type: 'community',
+    audience: 'developer',
+    outreachType: 'devto',
     url: 'https://dev.to/',
     description: 'Developer blogging platform. Great for technical write-ups and Show-style posts.',
     audienceSize: '20M+ monthly visitors',
@@ -76,6 +92,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'Twitter / X',
     type: 'social',
+    audience: 'general',
+    outreachType: 'twitter',
     url: 'https://twitter.com/',
     description: 'Build in public, share updates, connect with other founders and early adopters.',
     audienceSize: '500M+ users',
@@ -85,6 +103,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'LinkedIn',
     type: 'social',
+    audience: 'general',
+    outreachType: 'linkedin',
     url: 'https://www.linkedin.com/',
     description: 'Professional network. Effective for B2B tools and professional-audience products.',
     audienceSize: '900M+ users',
@@ -94,6 +114,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'BetaList',
     type: 'directory',
+    audience: 'product',
+    outreachType: 'community',
     url: 'https://betalist.com/',
     description: 'Directory for discovering and getting early access to upcoming startups.',
     audienceSize: '60k+ subscribers',
@@ -103,6 +125,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'Launching.io',
     type: 'directory',
+    audience: 'product',
+    outreachType: 'community',
     url: 'https://launching.io/',
     description: 'Curated directory to submit and discover new product launches.',
     audienceSize: '10k+ visitors',
@@ -112,6 +136,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'Lobste.rs',
     type: 'news',
+    audience: 'developer',
+    outreachType: 'community',
     url: 'https://lobste.rs/',
     description: 'Invite-only link aggregation for computing-related content. High signal-to-noise.',
     audienceSize: '50k+ members',
@@ -121,6 +147,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'Hacker Newsletter',
     type: 'email',
+    audience: 'developer',
+    outreachType: 'email',
     url: 'https://hackernewsletter.com/',
     description: 'Weekly curated newsletter of top Hacker News stories. Pitch your project for inclusion.',
     audienceSize: '60k+ subscribers',
@@ -130,6 +158,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'Ben\'s Bites',
     type: 'email',
+    audience: 'general',
+    outreachType: 'email',
     url: 'https://bensbites.com/',
     description: 'AI-focused newsletter. Great for AI/ML-related product launches.',
     audienceSize: '100k+ subscribers',
@@ -139,6 +169,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'GitHub Trending',
     type: 'community',
+    audience: 'developer',
+    outreachType: 'community',
     url: 'https://github.com/trending',
     description: 'Open-source projects that gain traction appear on GitHub Trending.',
     audienceSize: '100M+ developers',
@@ -148,6 +180,8 @@ export const CHANNELS: Channel[] = [
   {
     name: 'Uneed',
     type: 'directory',
+    audience: 'product',
+    outreachType: 'community',
     url: 'https://uneed.best/',
     description: 'Free product directory with daily launches. Quick submission process.',
     audienceSize: '20k+ monthly visitors',
