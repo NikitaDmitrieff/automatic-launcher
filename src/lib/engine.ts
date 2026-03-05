@@ -159,25 +159,11 @@ function getTimelineBonus(channel: Channel, timeline: ProjectInput['timeline']):
 }
 
 function isDeveloperChannel(channel: Channel): boolean {
-  const devChannels = [
-    'Hacker News (Show HN)',
-    'GitHub Trending',
-    'Dev.to',
-    'Reddit r/webdev',
-    'Lobste.rs',
-  ];
-  return devChannels.includes(channel.name);
+  return channel.audience === 'developer';
 }
 
 function isProductChannel(channel: Channel): boolean {
-  const productChannels = [
-    'Product Hunt',
-    'BetaList',
-    'Launching.io',
-    'Uneed',
-    'Indie Hackers',
-  ];
-  return productChannels.includes(channel.name);
+  return channel.audience === 'product';
 }
 
 function generateReason(channel: Channel, input: ProjectInput): string {
@@ -392,16 +378,7 @@ function generateTimeline(input: ProjectInput, topChannels: ChannelRecommendatio
 }
 
 function deriveChannelType(channel: Channel): OutreachTemplate['channelType'] {
-  const name = channel.name.toLowerCase();
-  if (name.includes('reddit')) return 'reddit';
-  if (name.includes('hacker news') || name.includes('show hn')) return 'hackernews';
-  if (name.includes('product hunt')) return 'producthunt';
-  if (name.includes('twitter') || name.includes('x')) return 'twitter';
-  if (name.includes('linkedin')) return 'linkedin';
-  if (name.includes('dev.to')) return 'devto';
-  if (name.includes('indie hacker')) return 'indiehackers';
-  if (channel.type === 'email') return 'email';
-  return 'community';
+  return channel.outreachType;
 }
 
 function deriveChannelId(channel: Channel): string {
