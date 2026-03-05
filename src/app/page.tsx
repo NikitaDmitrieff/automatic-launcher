@@ -1,0 +1,146 @@
+export default function Home() {
+  return (
+    <div className="min-h-screen flex flex-col">
+      {/* Hero Section */}
+      <main className="flex-1 flex items-center justify-center px-4 py-16 sm:py-24">
+        <div className="glass rounded-2xl p-8 sm:p-12 max-w-2xl w-full text-center">
+          <div className="inline-block px-3 py-1 mb-6 text-xs font-medium tracking-wide uppercase rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            Launch Copilot for Indie Hackers
+          </div>
+
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-4">
+            Launch Your Project
+            <br />
+            <span className="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+              in 24 Hours
+            </span>
+          </h1>
+
+          <p className="text-lg text-gray-400 mb-8 max-w-lg mx-auto leading-relaxed">
+            Get an actionable launch plan tailored to your project. Personalized
+            channel recommendations, outreach playbooks, and a step-by-step
+            timeline.
+          </p>
+
+          <a
+            href="/launch"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-indigo-500 hover:bg-indigo-400 text-white font-medium transition-colors duration-200"
+          >
+            Create Your Launch Plan
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13 7l5 5m0 0l-5 5m5-5H6"
+              />
+            </svg>
+          </a>
+        </div>
+      </main>
+
+      {/* Features Section */}
+      <section className="px-4 pb-16 sm:pb-24">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl font-semibold text-center text-white mb-12">
+            Everything you need to launch
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="glass glass-hover rounded-xl p-6">
+              <div className="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center mb-4">
+                <svg
+                  className="w-5 h-5 text-indigo-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-lg font-medium text-white mb-2">
+                Channel Recommendations
+              </h3>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                Get matched with the best launch channels for your project type
+                -- from Reddit communities to Product Hunt and niche forums.
+                Complete with direct links.
+              </p>
+            </div>
+
+            <div className="glass glass-hover rounded-xl p-6">
+              <div className="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center mb-4">
+                <svg
+                  className="w-5 h-5 text-cyan-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-lg font-medium text-white mb-2">
+                Outreach Playbooks
+              </h3>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                Ready-to-use templates for each channel. Know exactly what to
+                post, how to frame your project, and what tone resonates with
+                each community.
+              </p>
+            </div>
+
+            <div className="glass glass-hover rounded-xl p-6">
+              <div className="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4">
+                <svg
+                  className="w-5 h-5 text-purple-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-lg font-medium text-white mb-2">
+                Launch Timeline
+              </h3>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                A structured 24-hour plan broken into clear steps. Know exactly
+                what to do and when, so you spend time launching instead of
+                planning.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-white/5 px-4 py-6">
+        <div className="max-w-5xl mx-auto flex items-center justify-center">
+          <p className="text-sm text-gray-500">
+            Automatic Launcher &mdash; ship faster, launch smarter.
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
