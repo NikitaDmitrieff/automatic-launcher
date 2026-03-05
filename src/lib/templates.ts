@@ -203,15 +203,30 @@ Happy to answer any questions. Thanks for your time!`,
   },
 ];
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+}
+
 export function fillTemplate(
   template: OutreachTemplate,
   values: { projectName: string; description: string; demoUrl: string }
 ): OutreachTemplate {
+  const safeValues = {
+    projectName: escapeHtml(values.projectName),
+    description: escapeHtml(values.description),
+    demoUrl: escapeHtml(values.demoUrl),
+  };
+
   const fill = (text: string): string =>
     text
-      .replace(/\{\{projectName\}\}/g, values.projectName)
-      .replace(/\{\{description\}\}/g, values.description)
-      .replace(/\{\{demoUrl\}\}/g, values.demoUrl);
+      .replace(/\{\{projectName\}\}/g, safeValues.projectName)
+      .replace(/\{\{description\}\}/g, safeValues.description)
+      .replace(/\{\{demoUrl\}\}/g, safeValues.demoUrl);
 
   return {
     ...template,
